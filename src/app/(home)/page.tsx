@@ -1,6 +1,5 @@
 import HeadPhone1Image from "@/assets/img/headphone1.png";
 import HeadPhone2Image from "@/assets/img/headphone2.png";
-import { TracingBeam } from "@/components/tracing-beam";
 import Image from "next/image";
 import { StartSection, WeekProductsSection } from "./_components/home-section";
 
@@ -23,10 +22,10 @@ export default function HomePage() {
         sizes="(min-width: 640px) 275px, (min-width: 992px) 319px, 210px"
         alt="headphone-divided-2"
       />
-      <TracingBeam>
-        <StartSection />
-        <WeekProductsSection />
-      </TracingBeam>
+      {/* <TracingBeam> */}
+      <StartSection />
+      <WeekProductsSection />
+      {/* </TracingBeam> */}
     </>
   );
 }

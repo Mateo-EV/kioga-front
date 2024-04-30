@@ -6,8 +6,12 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./ui/accordion";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+} from "../../../../components/ui/accordion";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "../../../../components/ui/sheet";
 
 const NavbarMobileItems = () => {
   return (

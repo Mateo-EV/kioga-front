@@ -11,7 +11,7 @@ import NavbarScroll from "./navbar-scroll";
 
 const Navbar = () => {
   return (
-    <header className="group/header sticky top-0 z-20 w-full bg-background transition-colors md:bg-transparent md:data-[scrolled=true]:bg-background">
+    <header className="sticky top-0 z-20 w-full bg-background transition-colors md:bg-transparent md:data-[scrolled=true]:bg-background">
       <div className="header-border-gradient border-b md:border-border">
         <nav className="container flex h-16 items-center md:h-20">
           <h1 className="w-full max-w-24 text-center text-2xl font-bold lg:order-2">
@@ -45,7 +45,7 @@ const Navbar = () => {
           </ul>
         </nav>
       </div>
-      <div className="duration hidden h-16 items-center overflow-hidden border-b text-sm transition-[height_opacity] group-data-[scrolled=true]/header:h-0 group-data-[scrolled=true]/header:opacity-0 md:flex">
+      <div className="hidden h-16 items-center overflow-hidden border-b text-sm md:flex">
         <div className="container flex h-full items-center justify-between">
           <div className="w-full">
             <Link href="/" className="font-semibold">
@@ -113,7 +113,7 @@ const NavItem = ({ content, extra, links }: NavItemProps) => (
         </ul>
       </div>
     ) : (
-      <div className="absolute top-[80px] max-h-0 overflow-hidden bg-foreground text-accent opacity-0 transition-[max-height_opacity] group-hover:max-h-72 group-hover:opacity-100 group-hover:delay-150">
+      <div className="absolute top-[80px] z-30 max-h-0 overflow-hidden bg-foreground text-accent opacity-0 transition-[max-height_opacity] group-hover:max-h-72 group-hover:opacity-100 group-hover:delay-150">
         <ul className="space-y-2 p-4 font-normal">
           {links.map(({ href, text }) => (
             <li key={text}>

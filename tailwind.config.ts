@@ -23,6 +23,8 @@ const config = {
       md: "768px",
       sm: "640px",
       xs: "575px",
+
+      carouselMd: "820px",
     },
     transitionTimingFunction: {
       DEFAULT: "ease-in",
