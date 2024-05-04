@@ -1,4 +1,5 @@
 import Navbar from "@/app/(home)/_components/navbar/navbar";
+import Footer from "./_components/footer";
 
 export default function HomeLayout({
   children,
@@ -9,6 +10,7 @@ export default function HomeLayout({
     <>
       <Navbar />
       <main>{children}</main>
+      <Footer />
     </>
   );
 }

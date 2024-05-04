@@ -1,6 +1,6 @@
 import { cn, formatPrice } from "@/lib/utils";
 import Image from "next/image";
-import { HomePrimaryButton } from "./home-button";
+import { HomeButton } from "./home-button";
 import { ShoppingCartIcon } from "lucide-react";
 
 type ProductCardProps = {
@@ -9,7 +9,7 @@ type ProductCardProps = {
   imageSrc: React.ComponentPropsWithoutRef<typeof Image>["src"];
   price: number;
   discount: number | null;
-  className: string;
+  className?: string;
 };
 
 export const ProductCard = ({
@@ -21,7 +21,6 @@ export const ProductCard = ({
   className,
 }: ProductCardProps) => {
   const priceDisccounted = discount ? price * (1 - discount) : price;
-
   return (
     <div
       className={cn(
@@ -43,9 +42,9 @@ export const ProductCard = ({
             </span>
           )}
         </div>
-        <HomePrimaryButton>
+        <HomeButton>
           <ShoppingCartIcon className="size-5" />
-        </HomePrimaryButton>
+        </HomeButton>
       </div>
     </div>
   );

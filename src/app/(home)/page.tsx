@@ -1,7 +1,14 @@
 import HeadPhone1Image from "@/assets/img/headphone1.png";
 import HeadPhone2Image from "@/assets/img/headphone2.png";
 import Image from "next/image";
-import { StartSection, WeekProductsSection } from "./_components/home-section";
+import {
+  AboutUsSection,
+  CategoriesSection,
+  StartSection,
+  SubscriptionNewsLetterSection,
+  WeekProductsSection,
+} from "./_components/home-section";
+import { BrandsCarousel } from "./_components/brands-carousel";
 
 export default function HomePage() {
   return (
@@ -25,6 +32,10 @@ export default function HomePage() {
       {/* <TracingBeam> */}
       <StartSection />
       <WeekProductsSection />
+      <CategoriesSection />
+      <BrandsCarousel />
+      <AboutUsSection />
+      <SubscriptionNewsLetterSection />
       {/* </TracingBeam> */}
     </>
   );

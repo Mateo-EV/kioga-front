@@ -2,13 +2,14 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 
-type ButtonProps =
+type ButtonProps = (
   | (React.ComponentPropsWithoutRef<"button"> & {
       type?: "button";
     })
   | (React.ComponentPropsWithoutRef<typeof Link> & {
       type?: "link";
-    });
+    })
+) & { variant?: "primary" | "secondary" };
 
 const buttonType = {
   button: (props: React.ComponentPropsWithoutRef<"button">) => (
@@ -19,9 +20,10 @@ const buttonType = {
   ),
 };
 
-export const HomePrimaryButton = ({
+export const HomeButton = ({
   className,
   type = "button",
+  variant = "primary",
   ...props
 }: ButtonProps) => {
   const Button = buttonType[type] as any;
@@ -29,24 +31,10 @@ export const HomePrimaryButton = ({
   return (
     <Button
       className={cn(
-        "inline-flex items-center gap-2 rounded-bl-2xl rounded-tr-2xl bg-gradient-to-r from-primary to-secondary px-4 py-3 text-sm font-semibold text-primary-foreground",
-        className,
-      )}
-      {...props}
-    />
-  );
-};
-
-export const HomeSecondaryButton = ({
-  className,
-  type = "button",
-  ...props
-}: ButtonProps) => {
-  const Button = buttonType[type] as any;
-  return (
-    <Button
-      className={cn(
-        "inline-flex items-center gap-2 rounded-bl-2xl rounded-tr-2xl border px-4 py-3 text-sm font-semibold text-foreground",
+        "inline-flex items-center justify-center gap-2 rounded-bl-2xl rounded-tr-2xl px-4 py-3 text-sm font-semibold",
+        variant === "primary"
+          ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground"
+          : "border text-muted-foreground",
         className,
       )}
       {...props}

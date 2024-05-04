@@ -1,3 +1,5 @@
+import ProductoImage from "@/assets/img/producto1.png";
+
 export const colors = {
   primary: "#ff6600",
   secondary: "#ffffa1",
@@ -188,5 +190,78 @@ export const navItemsContent = [
         text: "Laptops",
       },
     ],
+  },
+];
+
+export const products = [
+  {
+    name: "Procesador AMD Ryzen 7 4500",
+    category: "Procesadores",
+    imageSrc: ProductoImage,
+    price: 550,
+    discount: null,
+  },
+  {
+    name: "Procesador AMD Ryzen 7 4500",
+    category: "Procesadores",
+    imageSrc: ProductoImage,
+    price: 550,
+    discount: 0.24,
+  },
+  {
+    name: "Procesador AMD Ryzen 7 4500",
+    category: "Procesadores",
+    imageSrc: ProductoImage,
+    price: 550,
+    discount: 0.24,
+  },
+  {
+    name: "Procesador AMD Ryzen 7 4500",
+    category: "Procesadores",
+    imageSrc: ProductoImage,
+    price: 550,
+    discount: 0.24,
+  },
+  {
+    name: "Procesador AMD Ryzen 7 4500",
+    category: "Procesadores",
+    imageSrc: ProductoImage,
+    price: 550,
+    discount: 0.24,
+  },
+  {
+    name: "Procesador AMD Ryzen 7 4500",
+    category: "Procesadores",
+    imageSrc: ProductoImage,
+    price: 550,
+    discount: 0.24,
+  },
+  {
+    name: "Procesador AMD Ryzen 7 4500",
+    category: "Procesadores",
+    imageSrc: ProductoImage,
+    price: 550,
+    discount: 0.24,
+  },
+  {
+    name: "Procesador AMD Ryzen 7 4500",
+    category: "Procesadores",
+    imageSrc: ProductoImage,
+    price: 550,
+    discount: 0.24,
+  },
+  {
+    name: "Procesador AMD Ryzen 7 4500",
+    category: "Procesadores",
+    imageSrc: ProductoImage,
+    price: 550,
+    discount: 0.24,
+  },
+  {
+    name: "Procesador AMD Ryzen 7 4500",
+    category: "Procesadores",
+    imageSrc: ProductoImage,
+    price: 550,
+    discount: 0.24,
   },
 ];

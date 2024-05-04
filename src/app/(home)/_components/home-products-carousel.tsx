@@ -8,81 +8,8 @@ import {
 } from "@/components/ui/carousel";
 import React, { useEffect, useState } from "react";
 import { ProductCard } from "./product-card";
-import ProductoImage from "@/assets/img/producto1.png";
 import { cn } from "@/lib/utils";
-
-const products = [
-  {
-    name: "Procesador AMD Ryzen 5 4500",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: null,
-  },
-  {
-    name: "Procesador AMD Ryzen 5 4500",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-  },
-  {
-    name: "Procesador AMD Ryzen 5 4500",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-  },
-  {
-    name: "Procesador AMD Ryzen 5 4500",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-  },
-  {
-    name: "Procesador AMD Ryzen 5 4500",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-  },
-  {
-    name: "Procesador AMD Ryzen 5 4500",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-  },
-  {
-    name: "Procesador AMD Ryzen 5 4500",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-  },
-  {
-    name: "Procesador AMD Ryzen 5 4500",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-  },
-  {
-    name: "Procesador AMD Ryzen 5 4500",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-  },
-  {
-    name: "Procesador AMD Ryzen 5 4500",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-  },
-];
+import { products } from "@/config/const";
 
 const HomeCarouselProducts = () => {
   const [carouselApi, setcarouselApi] = useState<CarouselApi>();
@@ -108,7 +35,7 @@ const HomeCarouselProducts = () => {
           {products.map((product, i) => (
             <CarouselItem
               key={i}
-              className="carouselMd:basis-1/4 xs:basis-1/2 xl:basis-1/6"
+              className="xs:basis-1/2 carouselMd:basis-1/4 xl:basis-1/6"
             >
               <ProductCard
                 {...product}
