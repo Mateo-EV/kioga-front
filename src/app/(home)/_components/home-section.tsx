@@ -19,21 +19,30 @@ export const StartSection = () => {
     <section className="py-12 xs:pt-20">
       <div className="container space-y-6">
         <h2
-          className="text-3xl font-semibold xs:text-4xl lg:text-5xl"
+          className="animate-fade-in text-3xl font-semibold opacity-0 fill-mode-forwards xs:text-4xl lg:text-5xl"
           style={{ lineHeight: 1.25 }}
         >
           Lo Mejor de <br />
           <span className="text-primary">Última Generación</span> <br />
           en Computación
         </h2>
-        <p className="max-w-[600px] text-justify text-sm xs:text-base lg:text-lg">
+        <p className="animate-fade-in max-w-[600px] text-justify text-sm opacity-0 delay-200 fill-mode-forwards xs:text-base lg:text-lg">
           Nuestro catálogo incluye una amplia gama de productos en el ámbito de
           la computación, como componentes, periféricos, equipos y mucho más.
         </p>
-        <HomeButton type="link" href="/">
+        <HomeButton
+          type="link"
+          href="/"
+          className="animate-fade-in opacity-0 delay-300 fill-mode-forwards"
+        >
           Ver Productos <ComputerIcon className="size-4" strokeWidth={2.5} />
         </HomeButton>
-        <HomeButton variant="secondary" type="link" href="/" className="ml-4">
+        <HomeButton
+          variant="secondary"
+          type="link"
+          href="/"
+          className="animate-fade-in ml-4 opacity-0 delay-300 fill-mode-forwards"
+        >
           Ver Categorias <Layers2Icon className="size-4" strokeWidth={2.5} />
         </HomeButton>
       </div>
@@ -43,7 +52,7 @@ export const StartSection = () => {
 
 export const WeekProductsSection = () => {
   return (
-    <section className="relative overflow-hidden py-12">
+    <section className="animate-fade-in relative overflow-hidden py-12 opacity-0 delay-700 fill-mode-forwards">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[250px] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-tr from-primary to-background opacity-30 blur-3xl xs:left-1/3 xs:top-[300px] xs:size-[300px]"
@@ -167,7 +176,7 @@ export const SubscriptionNewsLetterSection = () => (
   <section className="bg-zinc-50 py-12 text-background">
     <div className="container flex flex-col items-center gap-16 overflow-hidden md:flex-row">
       <Image src={SubscribeImage} alt="equipo" className="md:order-2" />
-      <div className="space-y-4 md:order-1">
+      <div className="w-full space-y-4 md:order-1">
         <span className="rounded-lg bg-primary px-4 py-1 text-sm text-foreground">
           Suscríbete
         </span>
