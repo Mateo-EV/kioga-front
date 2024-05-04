@@ -98,6 +98,7 @@ const Footer = () => {
               <Link
                 href={href}
                 key={href}
+                target="_blank"
                 className="rounded-md bg-zinc-50 from-primary to-secondary p-1 text-background transition-colors hover:bg-gradient-to-bl"
               >
                 {icon}
