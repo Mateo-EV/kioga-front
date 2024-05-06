@@ -21,7 +21,7 @@ const NavbarMobileItems = () => {
           <AlignJustifyIcon className="size-5" />
         </li>
       </SheetTrigger>
-      <SheetContent className="pt-8">
+      <SheetContent>
         <Accordion type="single" collapsible className="w-full">
           {navItemsContent.map((navItemsProps) => (
             <NavItem {...navItemsProps} key={navItemsProps.content} />

@@ -33,7 +33,7 @@ export const HomeButton = ({
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-bl-2xl rounded-tr-2xl px-4 py-3 text-sm font-semibold",
         variant === "primary"
-          ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground"
+          ? "to-thirdary bg-gradient-to-r from-primary text-primary-foreground"
           : "border text-muted-foreground",
         className,
       )}

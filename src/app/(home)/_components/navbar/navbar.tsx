@@ -14,16 +14,16 @@ const Navbar = () => {
     <header className="sticky top-0 z-20 w-full bg-background transition-colors md:bg-transparent md:data-[scrolled=true]:bg-background">
       <div className="header-border-gradient border-b md:border-border">
         <nav className="container flex h-16 items-center md:h-20">
-          <h1 className="w-full max-w-24 text-center text-2xl font-bold lg:order-2">
+          <span className="w-full max-w-24 text-center text-2xl font-bold lg:order-2">
             Kioga
-          </h1>
+          </span>
           <ul className="hidden h-full w-full items-center gap-6 md:flex lg:order-1">
             {navItemsContent.map((navItemProps) => (
               <NavItem {...navItemProps} key={navItemProps.content} />
             ))}
           </ul>
           <ul className="order-3 flex w-full items-center justify-end gap-3 md:gap-6">
-            <li className="md:hidden">
+            <li>
               <SearchIcon className="size-5" />
             </li>
             <li>
@@ -36,7 +36,7 @@ const Navbar = () => {
               </div>
               <div className="relative">
                 <ShoppingCartIcon className="size-5" />
-                <span className="absolute -right-2 -top-2 size-4 rounded bg-gradient-to-r from-primary to-secondary text-center text-xs font-bold leading-4 text-primary-foreground">
+                <span className="absolute -right-2 -top-2 size-4 rounded bg-primary text-center text-xs leading-4 text-primary-foreground">
                   0
                 </span>
               </div>
@@ -44,29 +44,6 @@ const Navbar = () => {
             <NavbarMobileItems />
           </ul>
         </nav>
-      </div>
-      <div className="hidden h-16 items-center overflow-hidden border-b text-sm md:flex">
-        <div className="container flex h-full items-center justify-between">
-          <div className="w-full">
-            <Link href="/" className="font-semibold">
-              Nuevos Accesorios{" "}
-              <span className="underline underline-offset-2">-30%</span>
-            </Link>
-          </div>
-          <div className="relative">
-            <SearchIcon className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-zinc-600" />
-            <input
-              type="text"
-              className="w-[300px] rounded-bl-2xl rounded-tr-2xl border border-zinc-600 bg-transparent p-2.5 pl-12 outline-none ring-offset-background transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-              placeholder="Buscar Productos..."
-            />
-          </div>
-          <div className="w-full text-right">
-            <Link href="/" className="underline underline-offset-2">
-              Equipos Nuevos
-            </Link>
-          </div>
-        </div>
       </div>
       <NavbarScroll />
     </header>
