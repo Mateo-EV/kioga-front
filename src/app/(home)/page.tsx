@@ -7,8 +7,8 @@ import {
   StartSection,
   SubscriptionNewsLetterSection,
   WeekProductsSection,
-} from "./_components/home-section";
-import { BrandsCarousel } from "./_components/brands-carousel";
+} from "./_components/home-sections";
+import { BrandsCarousel } from "./_components/carousel/brands-carousel";
 
 export default function HomePage() {
   return (

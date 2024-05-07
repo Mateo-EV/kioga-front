@@ -1,8 +1,7 @@
-import { ComputerIcon, EyeIcon, Layers2Icon } from "lucide-react";
-import { HomeButton } from "./home-button";
-import HomeCarouselProducts from "./home-products-carousel";
-import Link from "next/link";
-import { ProductCard } from "./product-card";
+import SubscribeImage from "@/assets/img/suscribe.png";
+import { H1, H2, Paragraph } from "@/components/typography";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -10,13 +9,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { products } from "@/config/const";
-import Image from "next/image";
-import SubscribeImage from "@/assets/img/suscribe.png";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { H1, H2, Paragraph } from "@/components/typography";
 import { Input } from "@/components/ui/input";
+import { products, top3Categories } from "@/config/const";
+import { ComputerIcon, EyeIcon, Layers2Icon } from "lucide-react";
+import Image from "next/image";
+import { ProductCard } from "./product-card";
+import ProductsFullScreenCarousel from "./carousel/products-fullscreen-carousel";
+import { TopCategoriesTab } from "./top-categories-tab";
 
 export const StartSection = () => {
   return (
@@ -60,7 +59,7 @@ export const WeekProductsSection = () => {
             Ver más <EyeIcon className="ml-2 size-4" />
           </Button>
         </div>
-        <HomeCarouselProducts />
+        <ProductsFullScreenCarousel products={products} />
       </div>
     </section>
   );
@@ -75,30 +74,7 @@ export const CategoriesSection = () => {
       />
       <div className="container space-y-8">
         <H2 className="text-center md:text-left">Mejores Categorías</H2>
-        <div className="grid auto-rows-fr grid-cols-1 items-center gap-4 text-center md:grid-cols-2 lg:grid-cols-4">
-          <Button>Procesadores</Button>
-          <Button variant="outline">Periféricos</Button>
-          <Button variant="outline">Monitores</Button>
-          <Button
-            variant="link"
-            className="text-sm text-muted-foreground hover:underline"
-          >
-            MOSTRAR MÁS CATEGORIAS
-          </Button>
-        </div>
-        <Carousel opts={{ align: "center", dragFree: true }}>
-          <CarouselContent>
-            {products.map((product, i) => (
-              <CarouselItem key={i} className="sm:basis-1/2 md:basis-1/3">
-                <div className="p-1">
-                  <ProductCard {...product} />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden xs:inline-flex" />
-          <CarouselNext className="hidden xs:inline-flex" />
-        </Carousel>
+        <TopCategoriesTab categories={top3Categories} />
       </div>
     </section>
   );
@@ -127,16 +103,9 @@ const features = [
   },
 ];
 
-{
-  /* <p className="text-justify text-sm xs:text-base lg:text-lg">
-  Somos una empresa dedicada a ofrecer soluciones en equipos de
-  computación de alta calidad para satisfacer las necesidades de
-  nuestros clientes.
-</p> */
-}
 export const AboutUsSection = () => {
   return (
-    <section className="relative py-8">
+    <section className="relative py-12">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[250px] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-tr from-primary to-background opacity-30 blur-3xl xs:left-1/3 xs:top-[200px] xs:size-[300px]"

@@ -33,7 +33,7 @@ export const BrandsCarousel = () => {
         <CarouselContent>
           {Array.from({ length: 53 }).map((_, i) => (
             <CarouselItem key={i} className="basis-[1/10]">
-              <div className="flex size-full items-center justify-center rounded-lg bg-zinc-200 p-3">
+              <div className="flex size-full items-center justify-center rounded-lg border bg-card/20 p-3">
                 <Image
                   src={`/brands/brand_${i}.png`}
                   alt={"brands-kioga-" + i}

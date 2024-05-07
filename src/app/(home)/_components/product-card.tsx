@@ -1,7 +1,4 @@
-import { cn, formatPrice } from "@/lib/utils";
-import Image from "next/image";
-import { HomeButton } from "./home-button";
-import { ShoppingCartIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,16 +6,13 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { type products } from "@/config/const";
+import { formatPrice } from "@/lib/utils";
+import { ShoppingCartIcon } from "lucide-react";
+import Image from "next/image";
 
-type ProductCardProps = {
-  name: string;
-  category: string;
-  imageSrc: React.ComponentPropsWithoutRef<typeof Image>["src"];
-  price: number;
-  discount: number | null;
-  className?: string;
-};
+type ProductCardProps = React.ComponentPropsWithoutRef<typeof Card> &
+  Omit<(typeof products)[number], "id">;
 
 export const ProductCard = ({
   name,
@@ -26,11 +20,11 @@ export const ProductCard = ({
   imageSrc,
   price,
   discount,
-  className,
+  ...props
 }: ProductCardProps) => {
   const priceDisccounted = discount ? price * (1 - discount) : price;
   return (
-    <Card className={cn("transition-transform", className)}>
+    <Card {...props}>
       <CardHeader>
         <p className="text-xl font-semibold">{name}</p>
         <CardDescription>Categoría: {category}</CardDescription>

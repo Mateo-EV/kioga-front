@@ -7,11 +7,17 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import React, { useEffect, useState } from "react";
-import { ProductCard } from "./product-card";
+import { ProductCard } from "../product-card";
 import { cn } from "@/lib/utils";
-import { products } from "@/config/const";
+import { type products } from "@/config/const";
 
-const HomeCarouselProducts = () => {
+type ProductsFullScreenCarouselProps = {
+  products: typeof products;
+};
+
+const ProductsFullScreenCarousel = ({
+  products,
+}: ProductsFullScreenCarouselProps) => {
   const [carouselApi, setcarouselApi] = useState<CarouselApi>();
   const [selectedItem, setSelectedItem] = useState(0);
   useEffect(() => {
@@ -38,8 +44,11 @@ const HomeCarouselProducts = () => {
               className="xs:basis-1/2 carouselMd:basis-1/4 xl:basis-1/6"
             >
               <ProductCard
+                className={
+                  "transition duration-500" +
+                  (selectedItem === i ? " xs:scale-105 xs:bg-card/40" : "")
+                }
                 {...product}
-                className={selectedItem === i ? "xs:scale-105" : ""}
               />
             </CarouselItem>
           ))}
@@ -63,4 +72,4 @@ const HomeCarouselProducts = () => {
   );
 };
 
-export default HomeCarouselProducts;
+export default ProductsFullScreenCarousel;
