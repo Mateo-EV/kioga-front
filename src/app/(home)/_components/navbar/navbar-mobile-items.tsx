@@ -6,12 +6,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../../../../components/ui/accordion";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "../../../../components/ui/sheet";
+} from "@/components/ui/accordion";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const NavbarMobileItems = () => {
   return (
@@ -21,7 +17,7 @@ const NavbarMobileItems = () => {
           <AlignJustifyIcon className="size-5" />
         </li>
       </SheetTrigger>
-      <SheetContent className="pt-8">
+      <SheetContent>
         <Accordion type="single" collapsible className="w-full">
           {navItemsContent.map((navItemsProps) => (
             <NavItem {...navItemsProps} key={navItemsProps.content} />

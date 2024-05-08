@@ -1,4 +1,5 @@
 import ProductoImage from "@/assets/img/producto1.png";
+import { MoveDownIcon, MoveUpIcon } from "lucide-react";
 
 export const colors = {
   primary: "#ff6600",
@@ -201,6 +202,7 @@ export const products = [
     imageSrc: ProductoImage,
     price: 550,
     discount: null,
+    brand: "Rysen",
   },
   {
     id: 1,
@@ -209,6 +211,7 @@ export const products = [
     imageSrc: ProductoImage,
     price: 550,
     discount: 0.24,
+    brand: "Rysen",
   },
   {
     id: 2,
@@ -217,6 +220,7 @@ export const products = [
     imageSrc: ProductoImage,
     price: 550,
     discount: 0.24,
+    brand: "Rysen",
   },
   {
     id: 3,
@@ -225,6 +229,7 @@ export const products = [
     imageSrc: ProductoImage,
     price: 550,
     discount: 0.24,
+    brand: "Rysen",
   },
   {
     id: 4,
@@ -233,6 +238,7 @@ export const products = [
     imageSrc: ProductoImage,
     price: 550,
     discount: 0.24,
+    brand: "Rysen",
   },
   {
     id: 5,
@@ -241,6 +247,7 @@ export const products = [
     imageSrc: ProductoImage,
     price: 550,
     discount: 0.24,
+    brand: "Rysen",
   },
   {
     id: 6,
@@ -249,6 +256,7 @@ export const products = [
     imageSrc: ProductoImage,
     price: 550,
     discount: 0.24,
+    brand: "Rysen",
   },
   {
     id: 7,
@@ -257,6 +265,7 @@ export const products = [
     imageSrc: ProductoImage,
     price: 550,
     discount: 0.24,
+    brand: "Rysen",
   },
   {
     id: 8,
@@ -265,6 +274,7 @@ export const products = [
     imageSrc: ProductoImage,
     price: 550,
     discount: 0.24,
+    brand: "Rysen",
   },
   {
     id: 9,
@@ -273,6 +283,7 @@ export const products = [
     imageSrc: ProductoImage,
     price: 550,
     discount: 0.24,
+    brand: "Rysen",
   },
 ];
 
@@ -287,6 +298,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: null,
+        brand: "Rysen",
       },
       {
         id: 2,
@@ -295,6 +307,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
       {
         id: 3,
@@ -303,6 +316,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
       {
         id: 4,
@@ -311,6 +325,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
       {
         id: 5,
@@ -319,6 +334,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
     ],
   },
@@ -332,6 +348,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: null,
+        brand: "Rysen",
       },
       {
         id: 7,
@@ -340,6 +357,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
       {
         id: 8,
@@ -348,6 +366,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
       {
         id: 9,
@@ -356,6 +375,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
       {
         id: 10,
@@ -364,6 +384,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
     ],
   },
@@ -377,6 +398,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: null,
+        brand: "Rysen",
       },
       {
         id: 12,
@@ -385,6 +407,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
       {
         id: 13,
@@ -393,6 +416,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
       {
         id: 14,
@@ -401,6 +425,7 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
       {
         id: 15,
@@ -409,7 +434,59 @@ export const top3Categories = [
         imageSrc: ProductoImage,
         price: 550,
         discount: 0.24,
+        brand: "Rysen",
       },
     ],
+  },
+];
+
+export const aboutUsData = [
+  {
+    title: "Calidad",
+    content:
+      "Nos comprometemos a ofrecer productos de alta calidad y rendimiento",
+  },
+  {
+    title: "Compromiso",
+    content:
+      "Trabajamos con dedicación y responsabilidad para superar las expectativas de nuestros clientes",
+  },
+  {
+    title: "Innovación",
+    content:
+      "Buscamos constantemente nuevas tecnologías y soluciones para mejorar la experiencia de nuestros clientes",
+  },
+  {
+    title: "Ética",
+    content:
+      "Operamos de manera ética y transparente en todas nuestras acciones",
+  },
+];
+
+export const orderByParameters = [
+  {
+    content: "Mejor Vendido",
+  },
+  {
+    content: "A - Z",
+  },
+  {
+    content: "Z - A",
+  },
+  {
+    content: "Precio",
+    icon: MoveUpIcon,
+  },
+  {
+    content: "Precio",
+    icon: MoveDownIcon,
+  },
+  {
+    content: "Fecha",
+    icon: MoveUpIcon,
+  },
+  {
+    content: "Fecha",
+    icon: MoveDownIcon,
   },
 ];

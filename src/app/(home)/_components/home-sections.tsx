@@ -1,25 +1,19 @@
 import SubscribeImage from "@/assets/img/suscribe.png";
 import { H1, H2, Paragraph } from "@/components/typography";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { Input } from "@/components/ui/input";
-import { products, top3Categories } from "@/config/const";
+import { aboutUsData, products, top3Categories } from "@/config/const";
 import { ComputerIcon, EyeIcon, Layers2Icon } from "lucide-react";
 import Image from "next/image";
-import { ProductCard } from "./product-card";
 import ProductsFullScreenCarousel from "./carousel/products-fullscreen-carousel";
 import { TopCategoriesTab } from "./top-categories-tab";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export const StartSection = () => {
   return (
-    <section className="container space-y-6 py-12 xs:pt-16">
+    <section className="container space-y-6 py-12">
       <H1
         className="animate-fade-in opacity-0 fill-mode-forwards"
         style={{ lineHeight: 1.25 }}
@@ -32,15 +26,24 @@ export const StartSection = () => {
         Nuestro catálogo incluye una amplia gama de productos en el ámbito de la
         computación, como componentes, periféricos, equipos y mucho más.
       </Paragraph>
-      <Button className="w-full animate-fade-in opacity-0 delay-300 fill-mode-forwards xs:mr-4 xs:w-auto">
-        Ver Productos <ComputerIcon className="ml-2 size-4" />
-      </Button>
-      <Button
-        variant="secondary"
-        className="w-full animate-fade-in opacity-0 delay-300 fill-mode-forwards xs:w-auto"
+      <Link
+        href="/productos"
+        className={cn(
+          buttonVariants(),
+          "w-full animate-fade-in gap-2 opacity-0 delay-300 fill-mode-forwards xs:mr-4 xs:w-auto",
+        )}
       >
-        Ver Categorias <Layers2Icon className="ml-2 size-4" strokeWidth={2.5} />
-      </Button>
+        Ver Productos <ComputerIcon className="size-4" />
+      </Link>
+      <Link
+        href="/categorias"
+        className={cn(
+          buttonVariants({ variant: "secondary" }),
+          "w-full animate-fade-in gap-2 opacity-0 delay-300 fill-mode-forwards xs:w-auto",
+        )}
+      >
+        Ver Categorías <Layers2Icon className="size-4" />
+      </Link>
     </section>
   );
 };
@@ -80,29 +83,6 @@ export const CategoriesSection = () => {
   );
 };
 
-const features = [
-  {
-    title: "Calidad",
-    content:
-      "Nos comprometemos a ofrecer productos de alta calidad y rendimiento",
-  },
-  {
-    title: "Compromiso",
-    content:
-      "Trabajamos con dedicación y responsabilidad para superar las expectativas de nuestros clientes",
-  },
-  {
-    title: "Innovación",
-    content:
-      "Buscamos constantemente nuevas tecnologías y soluciones para mejorar la experiencia de nuestros clientes",
-  },
-  {
-    title: "Ética",
-    content:
-      "Operamos de manera ética y transparente en todas nuestras acciones",
-  },
-];
-
 export const AboutUsSection = () => {
   return (
     <section className="relative py-12">
@@ -113,7 +93,7 @@ export const AboutUsSection = () => {
       <div className="container space-y-8">
         <H2>Sobre Nosotros</H2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map(({ title, content }, i) => (
+          {aboutUsData.map(({ title, content }, i) => (
             <Card key={i}>
               <CardContent>
                 <p className="mt-4 text-2xl text-primary">0{i + 1}</p>

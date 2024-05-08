@@ -14,10 +14,13 @@ const Navbar = () => {
     <header className="sticky top-0 z-20 w-full bg-background transition-colors md:bg-transparent md:data-[scrolled=true]:bg-background">
       <div className="header-border-gradient border-b md:border-border">
         <nav className="container flex h-16 items-center md:h-20">
-          <span className="w-full max-w-24 text-center text-2xl font-bold lg:order-2">
+          <Link
+            href="/"
+            className="w-full max-w-24 text-center text-2xl font-bold lg:order-2"
+          >
             Kioga
-          </span>
-          <ul className="hidden h-full w-full items-center gap-6 md:flex lg:order-1">
+          </Link>
+          <ul className="hidden h-full w-full items-center gap-6 md:ml-4 md:flex lg:order-1 lg:ml-0">
             {navItemsContent.map((navItemProps) => (
               <NavItem {...navItemProps} key={navItemProps.content} />
             ))}
@@ -68,7 +71,7 @@ const NavItem = ({ content, extra, links }: NavItemProps) => (
       <div className="absolute bottom-6 left-1/2 right-1/2 h-[1px] bg-gradient-to-r from-primary to-secondary transition-[left_right] group-hover:left-0 group-hover:right-0" />
     </div>
     {extra ? (
-      <div className="absolute left-0 right-0 top-[80px] z-30 max-h-0 overflow-hidden bg-foreground text-accent opacity-0 transition-[max-height_opacity] group-hover:max-h-72 group-hover:opacity-100 group-hover:delay-150">
+      <div className="absolute left-0 right-0 top-[80px] z-30 max-h-0 overflow-hidden bg-foreground text-accent opacity-0 shadow-md transition-[max-height_opacity] group-hover:max-h-72 group-hover:opacity-100 group-hover:delay-150">
         <ul className="container grid grid-cols-4 gap-8 py-4">
           {extra.map(({ links, title }) => (
             <li key={title}>
@@ -90,7 +93,7 @@ const NavItem = ({ content, extra, links }: NavItemProps) => (
         </ul>
       </div>
     ) : (
-      <div className="absolute top-[80px] z-30 max-h-0 overflow-hidden bg-foreground text-accent opacity-0 transition-[max-height_opacity] group-hover:max-h-72 group-hover:opacity-100 group-hover:delay-150">
+      <div className="absolute top-[80px] z-30 max-h-0 overflow-hidden bg-foreground text-accent opacity-0 shadow-md transition-[max-height_opacity] group-hover:max-h-72 group-hover:opacity-100 group-hover:delay-150">
         <ul className="space-y-2 p-4 font-normal">
           {links.map(({ href, text }) => (
             <li key={text}>

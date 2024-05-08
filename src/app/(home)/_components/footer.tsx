@@ -86,7 +86,7 @@ const links = [
 
 const Footer = () => {
   return (
-    <div className="border-t py-12">
+    <div className="border-t bg-background py-12">
       <div className="container flex flex-col flex-wrap gap-8 md:flex-row">
         <div className="space-y-4">
           <h1 className="text-2xl font-bold">Kioga</h1>

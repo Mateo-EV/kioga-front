@@ -19,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" style={{ colorScheme: "dark" }}>
-      <body className={`antialiased ${poppins.variable} relative font-main`}>
+      <body
+        className={`antialiased ${poppins.variable} relative min-w-72 font-main`}
+      >
         {children}
       </body>
     </html>

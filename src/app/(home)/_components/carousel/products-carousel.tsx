@@ -17,7 +17,10 @@ export const ProductsCarousel = ({ products }: ProductsCarouselProps) => {
     <Carousel opts={{ align: "center", dragFree: true }}>
       <CarouselContent>
         {products.map(({ id, ...product }) => (
-          <CarouselItem key={id} className="sm:basis-1/2 md:basis-1/3">
+          <CarouselItem
+            key={id}
+            className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+          >
             <div className="p-1">
               <ProductCard {...product} />
             </div>

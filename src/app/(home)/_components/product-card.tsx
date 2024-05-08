@@ -17,6 +17,7 @@ type ProductCardProps = React.ComponentPropsWithoutRef<typeof Card> &
 export const ProductCard = ({
   name,
   category,
+  brand,
   imageSrc,
   price,
   discount,
@@ -27,7 +28,9 @@ export const ProductCard = ({
     <Card {...props}>
       <CardHeader>
         <p className="text-xl font-semibold">{name}</p>
-        <CardDescription>Categoría: {category}</CardDescription>
+        <CardDescription>
+          {category} · {brand}
+        </CardDescription>
       </CardHeader>
       <CardContent className="relative mx-auto aspect-square overflow-hidden rounded-lg">
         <Image src={imageSrc} alt="producto-1" className="object-cover" fill />
