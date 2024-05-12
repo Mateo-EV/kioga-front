@@ -27,8 +27,8 @@ export const ProductsCarousel = ({ products }: ProductsCarouselProps) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="hidden xs:inline-flex" />
-      <CarouselNext className="hidden xs:inline-flex" />
+      <CarouselPrevious className="carouselXl:inline-flex hidden" />
+      <CarouselNext className="carouselXl:inline-flex hidden" />
     </Carousel>
   );
 };

@@ -29,7 +29,7 @@ export const navItemsContent = [
         ],
       },
       {
-        title: "Placas · Motherboars",
+        title: "Placas · Motherboards",
         links: [
           {
             href: "/",
@@ -198,6 +198,7 @@ export const products = [
   {
     id: 0,
     name: "Procesador AMD Ryzen 7 4500",
+    slug: "procesador-amd-ryzen-7-4600g",
     category: "Procesadores",
     imageSrc: ProductoImage,
     price: 550,
@@ -207,6 +208,8 @@ export const products = [
   {
     id: 1,
     name: "Procesador AMD Ryzen 7 4500",
+
+    slug: "procesador-amd-ryzen-7-4600g",
     category: "Procesadores",
     imageSrc: ProductoImage,
     price: 550,
@@ -216,6 +219,8 @@ export const products = [
   {
     id: 2,
     name: "Procesador AMD Ryzen 7 4500",
+
+    slug: "procesador-amd-ryzen-7-4600g",
     category: "Procesadores",
     imageSrc: ProductoImage,
     price: 550,
@@ -225,6 +230,8 @@ export const products = [
   {
     id: 3,
     name: "Procesador AMD Ryzen 7 4500",
+
+    slug: "procesador-amd-ryzen-7-4600g",
     category: "Procesadores",
     imageSrc: ProductoImage,
     price: 550,
@@ -234,6 +241,8 @@ export const products = [
   {
     id: 4,
     name: "Procesador AMD Ryzen 7 4500",
+
+    slug: "procesador-amd-ryzen-7-4600g",
     category: "Procesadores",
     imageSrc: ProductoImage,
     price: 550,
@@ -243,6 +252,8 @@ export const products = [
   {
     id: 5,
     name: "Procesador AMD Ryzen 7 4500",
+
+    slug: "procesador-amd-ryzen-7-4600g",
     category: "Procesadores",
     imageSrc: ProductoImage,
     price: 550,
@@ -252,6 +263,8 @@ export const products = [
   {
     id: 6,
     name: "Procesador AMD Ryzen 7 4500",
+
+    slug: "procesador-amd-ryzen-7-4600g",
     category: "Procesadores",
     imageSrc: ProductoImage,
     price: 550,
@@ -261,6 +274,8 @@ export const products = [
   {
     id: 7,
     name: "Procesador AMD Ryzen 7 4500",
+
+    slug: "procesador-amd-ryzen-7-4600g",
     category: "Procesadores",
     imageSrc: ProductoImage,
     price: 550,
@@ -270,6 +285,8 @@ export const products = [
   {
     id: 8,
     name: "Procesador AMD Ryzen 7 4500",
+
+    slug: "procesador-amd-ryzen-7-4600g",
     category: "Procesadores",
     imageSrc: ProductoImage,
     price: 550,
@@ -279,11 +296,100 @@ export const products = [
   {
     id: 9,
     name: "Procesador AMD Ryzen 7 4500",
+
+    slug: "procesador-amd-ryzen-7-4600g",
     category: "Procesadores",
     imageSrc: ProductoImage,
     price: 550,
     discount: 0.24,
     brand: "Rysen",
+  },
+];
+
+export const categories = [
+  {
+    text: "Cases · Gabinetes",
+    value: "gabinetes",
+  },
+  {
+    text: "Placas · Motherboards",
+    value: "placas",
+  },
+  {
+    text: "Procesadores",
+    value: "procesadores",
+  },
+  {
+    text: "Memoria Ram",
+    value: "memoria-ram",
+  },
+  {
+    text: "Almacenamiento",
+    value: "almacenamiento",
+  },
+  {
+    text: "Tarjetas de Video",
+    value: "tarjeta-de-video",
+  },
+  {
+    text: "Refrigeración · Enfriamiento",
+    value: "refrigeracion",
+  },
+  {
+    text: "Fuentes",
+    value: "fuentes",
+  },
+  {
+    text: "Pasta Térmica",
+    value: "pasta-termica",
+  },
+  {
+    text: "Mouse",
+    value: "mouse",
+  },
+  {
+    text: "Teclados",
+    value: "teclados",
+  },
+  {
+    text: "Audífonos",
+    value: "audifonos",
+  },
+  {
+    text: "Mousepads",
+    value: "mousepads",
+  },
+  {
+    text: "Micrófonos",
+    value: "microfonos",
+  },
+  {
+    text: "Mandos",
+    value: "mandos",
+  },
+  {
+    text: "Webcams",
+    value: "webcam",
+  },
+  {
+    text: "Accesorios para teclado",
+    value: "accesorios-para-teclado",
+  },
+  {
+    text: "Monitores",
+    value: "monitores",
+  },
+  {
+    text: "Escritorios",
+    value: "escritorios",
+  },
+  {
+    text: "Estabilizadores",
+    value: "estabilizadores",
+  },
+  {
+    text: "Laptops",
+    value: "laptops",
   },
 ];
 
@@ -294,6 +400,8 @@ export const top3Categories = [
       {
         id: 1,
         name: "Procesador AMD Ryzen 7 4500",
+
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -303,6 +411,7 @@ export const top3Categories = [
       {
         id: 2,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -312,6 +421,7 @@ export const top3Categories = [
       {
         id: 3,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -321,6 +431,7 @@ export const top3Categories = [
       {
         id: 4,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -330,6 +441,7 @@ export const top3Categories = [
       {
         id: 5,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -344,6 +456,7 @@ export const top3Categories = [
       {
         id: 6,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -353,6 +466,8 @@ export const top3Categories = [
       {
         id: 7,
         name: "Procesador AMD Ryzen 7 4500",
+
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -362,6 +477,8 @@ export const top3Categories = [
       {
         id: 8,
         name: "Procesador AMD Ryzen 7 4500",
+
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -371,6 +488,7 @@ export const top3Categories = [
       {
         id: 9,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -380,6 +498,7 @@ export const top3Categories = [
       {
         id: 10,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -394,6 +513,7 @@ export const top3Categories = [
       {
         id: 11,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -403,6 +523,7 @@ export const top3Categories = [
       {
         id: 12,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -412,6 +533,7 @@ export const top3Categories = [
       {
         id: 13,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -421,6 +543,7 @@ export const top3Categories = [
       {
         id: 14,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,
@@ -430,6 +553,7 @@ export const top3Categories = [
       {
         id: 15,
         name: "Procesador AMD Ryzen 7 4500",
+        slug: "procesador-amd-ryzen-7-4600g",
         category: "Procesadores",
         imageSrc: ProductoImage,
         price: 550,

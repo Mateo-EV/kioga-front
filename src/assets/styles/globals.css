@@ -16,8 +16,6 @@
     --primary: 24.6 95% 53.1%;
     --primary-foreground: 60 9.1% 97.8%;
 
-    --thirdary: 60 100% 82%;
-
     --secondary: 60 4.8% 95.9%;
     --secondary-foreground: 24 9.8% 10%;
 
@@ -46,7 +44,6 @@
     --bg-100:#1D1F21;
     --bg-200:#2c2e30;
     --bg-300:#444648; */
-      
   }
 }
 
@@ -73,6 +70,12 @@
 
   html {
     scroll-behavior: smooth !important;
+  }
+
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
   }
 
   .header-border-gradient {

@@ -10,6 +10,7 @@ import ProductsFullScreenCarousel from "./carousel/products-fullscreen-carousel"
 import { TopCategoriesTab } from "./top-categories-tab";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import GradientDecorator from "./gradient-decorator";
 
 export const StartSection = () => {
   return (
@@ -51,10 +52,7 @@ export const StartSection = () => {
 export const WeekProductsSection = () => {
   return (
     <section className="relative animate-fade-in overflow-hidden py-12 opacity-0 delay-700 fill-mode-forwards">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[250px] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-tr from-primary to-background opacity-30 blur-3xl xs:left-1/3 xs:top-[300px] xs:size-[300px]"
-      />
+      <GradientDecorator className="left-1/2 size-[250px] -translate-x-1/2 -translate-y-1/2 xs:left-1/3 xs:top-[300px] xs:size-[300px]" />
       <div className="container xs:space-y-8">
         <div className="flex flex-col items-center justify-between gap-4 xs:flex-row">
           <H2>Productos de la Semana</H2>
@@ -70,11 +68,8 @@ export const WeekProductsSection = () => {
 
 export const CategoriesSection = () => {
   return (
-    <section className="relative overflow-hidden py-12">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[200px] -translate-x-[50%] -translate-y-[70%] bg-gradient-to-tr from-primary to-background opacity-30 blur-[100px] md:left-2/3 md:top-1/2 md:block xl:size-[300px]"
-      />
+    <section className="relative py-12">
+      <GradientDecorator className="left-1/2 size-[250px] -translate-x-1/2 -translate-y-[70%] md:left-2/3 md:top-1/2 md:block xl:size-[300px]" />
       <div className="container space-y-8">
         <H2 className="text-center md:text-left">Mejores Categorías</H2>
         <TopCategoriesTab categories={top3Categories} />
@@ -86,10 +81,8 @@ export const CategoriesSection = () => {
 export const AboutUsSection = () => {
   return (
     <section className="relative py-12">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[250px] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-tr from-primary to-background opacity-30 blur-3xl xs:left-1/3 xs:top-[200px] xs:size-[300px]"
-      />
+      <GradientDecorator className="left-1/2 size-[250px] -translate-x-1/2 -translate-y-1/2 xs:left-1/3 xs:top-[200px] xs:size-[300px]" />
+
       <div className="container space-y-8">
         <H2>Sobre Nosotros</H2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

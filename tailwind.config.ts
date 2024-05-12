@@ -24,6 +24,7 @@ const config = {
       xs: "575px",
 
       carouselMd: "820px",
+      carouselXl: "1500px",
     },
     transitionTimingFunction: {
       DEFAULT: "ease-in",
@@ -41,9 +42,6 @@ const config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-        },
-        thirdary: {
-          DEFAULT: "hsl(var(--thirdary))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

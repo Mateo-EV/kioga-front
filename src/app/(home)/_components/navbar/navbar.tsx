@@ -7,11 +7,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import NavbarMobileItems from "./navbar-mobile-items";
-import NavbarScroll from "./navbar-scroll";
 
 const Navbar = () => {
   return (
-    <header className="sticky top-0 z-20 w-full bg-background transition-colors md:bg-transparent md:data-[scrolled=true]:bg-background">
+    <header className="sticky top-0 z-20 w-full bg-background backdrop-blur transition-colors md:bg-transparent md:data-[scrolled=true]:bg-background">
       <div className="header-border-gradient border-b md:border-border">
         <nav className="container flex h-16 items-center md:h-20">
           <Link
@@ -48,7 +47,7 @@ const Navbar = () => {
           </ul>
         </nav>
       </div>
-      <NavbarScroll />
+      {/* <NavbarScroll /> */}
     </header>
   );
 };

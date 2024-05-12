@@ -13,10 +13,6 @@ import Image from "next/image";
 export default function HomePage() {
   return (
     <>
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-0 -z-10 size-[200px] -translate-x-[50%] -translate-y-[70%] bg-gradient-to-tr from-primary to-secondary opacity-30 blur-[100px] md:left-1/3 md:block xl:size-[300px]"
-      />
       <Image
         className="absolute left-0 top-0 -z-10 hidden animate-fade-in transition fill-mode-forwards xs:block xs:w-[110px] sm:w-[125px]"
         src={HeadPhone1Image}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -12,6 +12,7 @@ import { type top3Categories } from "@/config/const";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { ProductCard } from "./product-card";
+import Link from "next/link";
 
 type TopCategoriesTabProps = {
   categories: typeof top3Categories;
@@ -36,12 +37,12 @@ export const TopCategoriesTab = ({ categories }: TopCategoriesTabProps) => {
             {name}
           </Button>
         ))}
-        <Button
-          variant="link"
-          className="text-sm text-muted-foreground hover:underline"
+        <Link
+          href="/categorias"
+          className={buttonVariants({ variant: "link" })}
         >
           MOSTRAR MÁS CATEGORIAS
-        </Button>
+        </Link>
       </div>
 
       <Carousel opts={{ dragFree: true }}>
@@ -67,8 +68,8 @@ export const TopCategoriesTab = ({ categories }: TopCategoriesTabProps) => {
             </CarouselContent>
           </motion.div>
         </AnimatePresence>
-        <CarouselPrevious className="hidden xs:inline-flex" />
-        <CarouselNext className="hidden xs:inline-flex" />
+        <CarouselPrevious className="carouselXl:inline-flex hidden" />
+        <CarouselNext className="carouselXl:inline-flex hidden" />
       </Carousel>
     </>
   );
