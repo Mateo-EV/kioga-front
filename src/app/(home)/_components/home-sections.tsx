@@ -56,9 +56,14 @@ export const WeekProductsSection = () => {
       <div className="container xs:space-y-8">
         <div className="flex flex-col items-center justify-between gap-4 xs:flex-row">
           <H2>Productos de la Semana</H2>
-          <Button variant="secondary">
-            Ver más <EyeIcon className="ml-2 size-4" />
-          </Button>
+          <Link
+            href="/productos"
+            className={cn(
+              buttonVariants({ variant: "secondary", className: "gap-2" }),
+            )}
+          >
+            Ver Más <EyeIcon className="size-4" />
+          </Link>
         </div>
         <ProductsFullScreenCarousel products={products} />
       </div>

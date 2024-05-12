@@ -15,15 +15,15 @@ export const navItemsContent = [
         title: "Case · Gabinetes",
         links: [
           {
-            href: "/",
+            href: "/categorias/gabinetes?tipo=con-fuente",
             text: "Con fuente",
           },
           {
-            href: "/",
+            href: "/categorias/gabinetes?tipo=sin-fuente",
             text: "Sin fuente",
           },
           {
-            href: "/",
+            href: "/categorias/gabinetes?tipo=accesorios",
             text: "Accesorios",
           },
         ],
@@ -32,11 +32,11 @@ export const navItemsContent = [
         title: "Placas · Motherboards",
         links: [
           {
-            href: "/",
+            href: "/categorias/placas?tipo=amd",
             text: "AMD",
           },
           {
-            href: "/",
+            href: "/categorias/placas?tipo=intel",
             text: "Intel",
           },
         ],
@@ -45,11 +45,11 @@ export const navItemsContent = [
         title: "Procesadores",
         links: [
           {
-            href: "/",
+            href: "/categorias/procesadores?tipo=amd",
             text: "AMD",
           },
           {
-            href: "/",
+            href: "/categorias/procesadores?tipo=intel",
             text: "Intel",
           },
         ],
@@ -58,11 +58,11 @@ export const navItemsContent = [
         title: "Memoria Ram",
         links: [
           {
-            href: "/",
+            href: "/categorias/memoria-ram?tipo=escritorio",
             text: "Escritorio",
           },
           {
-            href: "/",
+            href: "/categorias/memoria-ram?tipo=laptops",
             text: "Laptops",
           },
         ],
@@ -71,15 +71,15 @@ export const navItemsContent = [
         title: "Almacenamiento",
         links: [
           {
-            href: "/",
+            href: "/categorias/almacenamiento?tipo=sdd-sata",
             text: "SDD SATA",
           },
           {
-            href: "/",
+            href: "/categorias/almacenamiento?tipo=ssd-nvme",
             text: "SSD NVME",
           },
           {
-            href: "/",
+            href: "/categorias/almacenamiento?tipo=hdd",
             text: "HDD",
           },
         ],
@@ -88,11 +88,11 @@ export const navItemsContent = [
         title: "Tarjetas de Video",
         links: [
           {
-            href: "/",
+            href: "/categorias/tarjetas-de-video?tipo=nvidia",
             text: "Nvidia",
           },
           {
-            href: "/",
+            href: "/categorias/tarjetas-de-video?tipo=amd",
             text: "AMD",
           },
         ],
@@ -101,11 +101,11 @@ export const navItemsContent = [
         title: "Refrigeración · Enfriamiento",
         links: [
           {
-            href: "/",
+            href: "/categorias/enfriamiento?tipo=liquido",
             text: "Líquido",
           },
           {
-            href: "/",
+            href: "/categorias/enfriamiento?tipo=aire",
             text: "Aire",
           },
         ],
@@ -114,7 +114,7 @@ export const navItemsContent = [
         title: "Fuentes",
         links: [
           {
-            href: "/",
+            href: "/categorias/fuentes",
             text: "Certificadas 80+",
           },
         ],
@@ -123,7 +123,7 @@ export const navItemsContent = [
         title: "Pasta Térmica",
         links: [
           {
-            href: "/",
+            href: "/categorias/pasta-termica",
             text: "Ver Todo",
           },
         ],
@@ -134,39 +134,39 @@ export const navItemsContent = [
     content: "Periféricos",
     links: [
       {
-        href: "/",
+        href: "/categorias/perifericos?tipo=mouse",
         text: "Mouse",
       },
       {
-        href: "/",
+        href: "/categorias/perifericos?tipo=teclados",
         text: "Teclados",
       },
       {
-        href: "/",
+        href: "/categorias/perifericos?tipo=audifonos",
         text: "Audifonos",
       },
       {
-        href: "/",
+        href: "/categorias/perifericos?tipo=mousepads",
         text: "Mousepads",
       },
       {
-        href: "/",
+        href: "/categorias/perifericos?tipo=microfonos",
         text: "Microfonos",
       },
       {
-        href: "/",
+        href: "/categorias/perifericos?tipo=mandos",
         text: "Mandos",
       },
       {
-        href: "/",
+        href: "/categorias/perifericos?tipo=webcams",
         text: "Webcams",
       },
       {
-        href: "/",
+        href: "/categorias/perifericos?tipo=packs",
         text: "Packs",
       },
       {
-        href: "/",
+        href: "/categorias/perifericos?tipo=accesorios-para-teclado",
         text: "Accesorios para teclado",
       },
     ],
@@ -175,19 +175,19 @@ export const navItemsContent = [
     content: "Otros",
     links: [
       {
-        href: "/",
+        href: "/categorias/monitores",
         text: "Monitores",
       },
       {
-        href: "/",
+        href: "/categorias/escritorios",
         text: "Escritorios",
       },
       {
-        href: "/",
+        href: "/categorias/estabilizadores",
         text: "Estabilizadores",
       },
       {
-        href: "/",
+        href: "/categorias/laptops",
         text: "Laptops",
       },
     ],
@@ -343,38 +343,7 @@ export const categories = [
     text: "Pasta Térmica",
     value: "pasta-termica",
   },
-  {
-    text: "Mouse",
-    value: "mouse",
-  },
-  {
-    text: "Teclados",
-    value: "teclados",
-  },
-  {
-    text: "Audífonos",
-    value: "audifonos",
-  },
-  {
-    text: "Mousepads",
-    value: "mousepads",
-  },
-  {
-    text: "Micrófonos",
-    value: "microfonos",
-  },
-  {
-    text: "Mandos",
-    value: "mandos",
-  },
-  {
-    text: "Webcams",
-    value: "webcam",
-  },
-  {
-    text: "Accesorios para teclado",
-    value: "accesorios-para-teclado",
-  },
+  { text: "Periféricos", value: "perifericos" },
   {
     text: "Monitores",
     value: "monitores",
