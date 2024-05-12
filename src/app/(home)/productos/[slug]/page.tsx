@@ -1,13 +1,7 @@
 import ProductImage from "@/assets/img/producto1.png";
 import AddCartQuantity from "@/components/add-cart-quantity";
 import { H1, H2, Paragraph } from "@/components/typography";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { BreadcrumbController } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { products } from "@/config/const";
@@ -28,17 +22,12 @@ export default function ProductsSlugPage({
       <section className="container space-y-4 py-6 md:py-10">
         <div className="flex flex-col gap-8 md:flex-row">
           <div className="basis-3/4 space-y-4">
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/productos">Products</BreadcrumbLink>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <BreadcrumbController
+              prevPages={[
+                { href: "/", name: "Home" },
+                { href: "/productos", name: "Productos" },
+              ]}
+            />
             <H1>Procesador AMD Ryzen 7 4600g</H1>
             <div className="text-sm text-muted-foreground">
               <Link

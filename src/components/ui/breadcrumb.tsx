@@ -105,6 +105,37 @@ const BreadcrumbEllipsis = ({
 );
 BreadcrumbEllipsis.displayName = "BreadcrumbElipssis";
 
+type BreadcrumbControllerProps = {
+  prevPages: {
+    name: string;
+    href: string;
+  }[];
+  actualPage?: string;
+} & React.ComponentPropsWithoutRef<typeof Breadcrumb>;
+
+const BreadcrumbController = ({
+  prevPages,
+  ...props
+}: BreadcrumbControllerProps) => {
+  return (
+    <Breadcrumb {...props}>
+      <BreadcrumbList>
+        {prevPages.map(({ name, href }) => (
+          <>
+            <BreadcrumbItem key={href}>
+              <BreadcrumbLink href={href}>{name}</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+          </>
+        ))}
+        {props.actualPage && (
+          <BreadcrumbPage>{props.actualPage}</BreadcrumbPage>
+        )}
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+};
+
 export {
   Breadcrumb,
   BreadcrumbList,
@@ -113,4 +144,5 @@ export {
   BreadcrumbPage,
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
+  BreadcrumbController,
 };

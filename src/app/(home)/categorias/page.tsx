@@ -1,13 +1,6 @@
 import CategoryImage from "@/assets/img/category1.png";
 import { H1 } from "@/components/typography";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { BreadcrumbController } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { categories } from "@/config/const";
 import Image from "next/image";
@@ -17,21 +10,14 @@ export default function CategoriesPage() {
   return (
     <section className="container space-y-4 py-6 md:py-10">
       <H1 className="text-center">Categorías</H1>
-      <Breadcrumb className="container flex w-full justify-center">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/productos">Productos</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Categorias</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <BreadcrumbController
+        className="container flex w-full justify-center"
+        prevPages={[
+          { href: "/", name: "Home" },
+          { href: "/productos", name: "Productos" },
+        ]}
+        actualPage="Categorías"
+      />
       <div className="relative flex flex-wrap items-center justify-center gap-10">
         {categories.map(({ text, value }) => (
           <Link href={"/categorias/" + value} key={value}>
