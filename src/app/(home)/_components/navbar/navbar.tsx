@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import NavbarMobileItems from "./navbar-mobile-items";
+import Cart from "../cart";
 
 const Navbar = () => {
   return (
@@ -31,18 +32,7 @@ const Navbar = () => {
             <li>
               <UserIcon className="size-5" />
             </li>
-            <li className="flex items-center gap-3">
-              <div className="hidden flex-col text-sm md:flex">
-                <span>Mi carrito</span>
-                <b>S/ 0.00</b>
-              </div>
-              <div className="relative">
-                <ShoppingCartIcon className="size-5" />
-                <span className="absolute -right-2 -top-2 size-4 rounded bg-primary text-center text-xs leading-4 text-primary-foreground">
-                  0
-                </span>
-              </div>
-            </li>
+            <Cart />
             <NavbarMobileItems />
           </ul>
         </nav>
