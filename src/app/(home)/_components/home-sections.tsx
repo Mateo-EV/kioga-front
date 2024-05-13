@@ -30,7 +30,7 @@ export const StartSection = () => {
       <Link
         href="/productos"
         className={cn(
-          buttonVariants(),
+          buttonVariants({ size: "lg" }),
           "w-full animate-fade-in gap-2 opacity-0 delay-300 fill-mode-forwards xs:mr-4 xs:w-auto",
         )}
       >
@@ -39,7 +39,7 @@ export const StartSection = () => {
       <Link
         href="/categorias"
         className={cn(
-          buttonVariants({ variant: "secondary" }),
+          buttonVariants({ variant: "secondary", size: "lg" }),
           "w-full animate-fade-in gap-2 opacity-0 delay-300 fill-mode-forwards xs:w-auto",
         )}
       >
@@ -59,7 +59,11 @@ export const WeekProductsSection = () => {
           <Link
             href="/productos"
             className={cn(
-              buttonVariants({ variant: "secondary", className: "gap-2" }),
+              buttonVariants({
+                variant: "secondary",
+                className: "gap-2",
+                size: "lg",
+              }),
             )}
           >
             Ver Más <EyeIcon className="size-4" />

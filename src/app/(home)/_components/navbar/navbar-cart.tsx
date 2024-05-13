@@ -8,26 +8,26 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { formatPrice } from "@/lib/utils";
-import { GhostIcon, ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
+import { ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
 
-function Cart() {
+function NavbarCart() {
   const cartItems = [];
 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <li className="flex cursor-pointer items-center gap-3">
-          <div className="hidden flex-col text-sm md:flex">
+        <div className="flex cursor-pointer items-center gap-1">
+          <div className="ml-2 hidden flex-col text-sm md:flex">
             <span>Mi carrito</span>
             <b>S/ 0.00</b>
           </div>
-          <div className="relative">
+          <Button variant="ghost" size="icon" className="relative">
             <ShoppingCartIcon className="size-5" />
-            <span className="absolute -right-2 -top-2 size-4 rounded bg-primary text-center text-xs leading-4 text-primary-foreground">
+            <span className="absolute right-[2px] top-[2px] size-4 rounded bg-primary text-center text-xs leading-4 text-primary-foreground">
               0
             </span>
-          </div>
-        </li>
+          </Button>
+        </div>
       </SheetTrigger>
       <SheetContent className="flex flex-col">
         <SheetHeader>
@@ -57,4 +57,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default NavbarCart;

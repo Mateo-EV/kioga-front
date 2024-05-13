@@ -1,13 +1,10 @@
+import { Button } from "@/components/ui/button";
 import { colors, navItemsContent } from "@/config/const";
-import {
-  ChevronDownIcon,
-  SearchIcon,
-  ShoppingCartIcon,
-  UserIcon,
-} from "lucide-react";
+import { ChevronDownIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
+import NavbarCart from "./navbar-cart";
+import NavbarUserDropdown from "./navbar-dropdown-user";
 import NavbarMobileItems from "./navbar-mobile-items";
-import Cart from "../cart";
 
 const Navbar = () => {
   return (
@@ -25,16 +22,14 @@ const Navbar = () => {
               <NavItem {...navItemProps} key={navItemProps.content} />
             ))}
           </ul>
-          <ul className="order-3 flex w-full items-center justify-end gap-3 md:gap-6">
-            <li>
+          <div className="order-3 flex w-full items-center justify-end">
+            <NavbarUserDropdown />
+            <Button variant="ghost" size="icon">
               <SearchIcon className="size-5" />
-            </li>
-            <li>
-              <UserIcon className="size-5" />
-            </li>
-            <Cart />
+            </Button>
+            <NavbarCart />
             <NavbarMobileItems />
-          </ul>
+          </div>
         </nav>
       </div>
       {/* <NavbarScroll /> */}

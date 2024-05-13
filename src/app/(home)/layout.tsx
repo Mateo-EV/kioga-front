@@ -1,7 +1,6 @@
 import Navbar from "@/app/(home)/_components/navbar/navbar";
 import Footer from "./_components/footer";
 import GradientDecorator from "./_components/gradient-decorator";
-
 export default function HomeLayout({
   children,
 }: {

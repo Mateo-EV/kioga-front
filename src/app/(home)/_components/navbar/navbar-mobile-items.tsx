@@ -8,14 +8,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
 const NavbarMobileItems = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <li className="ml-1 cursor-pointer md:hidden">
+        <Button className="-mr-2 md:hidden" size="icon" variant="ghost">
           <AlignJustifyIcon className="size-5" />
-        </li>
+        </Button>
       </SheetTrigger>
       <SheetContent>
         <Accordion type="single" collapsible className="w-full">

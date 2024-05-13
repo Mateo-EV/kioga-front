@@ -29,7 +29,6 @@ import { useMediaQuery } from "@mantine/hooks";
 import React, { useMemo } from "react";
 import {
   Breadcrumb,
-  BreadcrumbController,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
