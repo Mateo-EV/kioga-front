@@ -14,14 +14,17 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  authModal,
 }: {
   children: React.ReactNode;
+  authModal: React.ReactNode;
 }) {
   return (
     <html lang="es" style={{ colorScheme: "dark" }}>
       <body
         className={`antialiased ${poppins.variable} relative min-w-72 font-main`}
       >
+        {authModal}
         {children}
       </body>
     </html>
