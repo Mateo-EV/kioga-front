@@ -97,10 +97,10 @@ export const AboutUsSection = () => {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {aboutUsData.map(({ title, content }, i) => (
             <Card key={i}>
-              <CardContent>
+              <CardContent className="space-y-2">
                 <p className="mt-4 text-2xl text-primary">0{i + 1}</p>
                 <p className="text-2xl font-semibold">{title}</p>
-                <p className="text-justify text-sm xs:text-base lg:text-lg">
+                <p className="text-pretty text-justify text-sm xs:text-base lg:text-lg">
                   {content}
                 </p>
               </CardContent>

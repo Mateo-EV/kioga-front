@@ -10,7 +10,7 @@ type AuthPageProps = {
 
 function AuthPage({ isLoginPage = false, isModal = false }: AuthPageProps) {
   return (
-    <div className="mx-auto flex w-full flex-col justify-center gap-6 py-4 sm:w-[350px]">
+    <div className="mx-auto flex w-full flex-col justify-center gap-6 py-4">
       <H2 className="xs:text-center">
         {isLoginPage ? "Iniciar Sesión" : "Registrarse"}
       </H2>

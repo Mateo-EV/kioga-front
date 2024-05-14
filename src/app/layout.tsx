@@ -30,4 +30,3 @@ export default function RootLayout({
     </html>
   );
 }
-// md:pt-[146px] pt-20

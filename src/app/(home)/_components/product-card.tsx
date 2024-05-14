@@ -36,7 +36,13 @@ export const ProductCard = ({
           >
             {category}
           </Link>{" "}
-          · {brand}
+          ·{" "}
+          <Link
+            href={"/productos?marca=" + brand.toLowerCase()}
+            className="underline-offset-4 hover:underline"
+          >
+            {brand}
+          </Link>
         </div>
       </CardHeader>
       <Link href={"/productos/" + slug}>
