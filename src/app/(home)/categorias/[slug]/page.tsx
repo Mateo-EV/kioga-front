@@ -3,6 +3,7 @@ import { FilterProducts } from "@/app/(home)/_components/filter-products";
 import { H1 } from "@/components/typography";
 import { products } from "@/config/const";
 import { type Metadata, type ResolvingMetadata } from "next";
+import { Suspense } from "react";
 
 type Params = {
   params: { slug: string };
@@ -30,13 +31,15 @@ export default function GalleryCategoriesPage({
   return (
     <section className="container space-y-4 py-6 md:py-10">
       <H1 className="text-center">{slug}</H1>
-      <FilterProducts type="categories" categoryName={slug}>
-        <div className="grid flex-1 grid-cols-[repeat(auto-fill,minmax(min(250px,100%),1fr))] gap-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </FilterProducts>
+      <Suspense>
+        <FilterProducts type="categories" categoryName={slug}>
+          <div className="grid flex-1 grid-cols-[repeat(auto-fill,minmax(min(250px,100%),1fr))] gap-4">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </FilterProducts>
+      </Suspense>
     </section>
   );
 }
