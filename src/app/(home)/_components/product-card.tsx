@@ -79,7 +79,8 @@ export const ProductCard = ({
             })
           }
         >
-          <ShoppingCartIcon className="size-5" />
+          <span className="sr-only">Agregar al carro</span>
+          <ShoppingCartIcon className="size-5" aria-hidden="true" />
         </Button>
       </CardFooter>
     </Card>

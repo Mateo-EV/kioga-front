@@ -25,8 +25,13 @@ const Navbar = () => {
           </ul>
           <div className="order-3 flex w-full items-center justify-end">
             <NavbarUserDropdown />
-            <Button variant="ghost" size="icon">
-              <SearchIcon className="size-5" />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hover:bg-transparent"
+            >
+              <span className="sr-only">Buscar Productos</span>
+              <SearchIcon className="size-5" aria-hidden="true" />
             </Button>
             <NavbarCart />
             <NavbarMobileItems />

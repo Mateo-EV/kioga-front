@@ -14,7 +14,7 @@ type ProductsCarouselProps = {
 
 export const ProductsCarousel = ({ products }: ProductsCarouselProps) => {
   return (
-    <Carousel opts={{ align: "center", dragFree: true }}>
+    <Carousel opts={{ dragFree: true }}>
       <CarouselContent>
         {products.map((product) => (
           <CarouselItem

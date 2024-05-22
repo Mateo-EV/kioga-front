@@ -80,7 +80,7 @@ export const WeekProductsSection = () => {
 
 export const CategoriesSection = () => {
   return (
-    <section className="relative py-12">
+    <section className="relative overflow-hidden py-12">
       <GradientDecorator className="left-1/2 size-[250px] -translate-x-1/2 -translate-y-[70%] md:left-2/3 md:top-1/2 md:block xl:size-[300px]" />
       <div className="container space-y-8">
         <H2 className="text-center md:text-left">Mejores Categorías</H2>

@@ -195,6 +195,7 @@ export const FilterProducts = ({
                         v ? "append" : "delete",
                       );
                     }}
+                    aria-label={label}
                   />
                   <span className="overflow-hidden text-ellipsis whitespace-nowrap text-muted-foreground">
                     {label}
@@ -233,6 +234,7 @@ export const FilterProducts = ({
                           v ? "append" : "delete",
                         );
                       }}
+                      aria-label={text}
                     />
                     <span className="overflow-hidden text-ellipsis whitespace-nowrap text-muted-foreground">
                       {text}
@@ -263,6 +265,7 @@ export const FilterProducts = ({
                         v ? "append" : "delete",
                       );
                     }}
+                    aria-label={label}
                   />
                   <span className="overflow-hidden text-ellipsis whitespace-nowrap text-muted-foreground">
                     {label}
@@ -282,7 +285,8 @@ export const FilterProducts = ({
         {isMobile ? (
           <Sheet>
             <SheetTrigger>
-              <SlidersHorizontalIcon className="size-4" />
+              <span className="sr-only">Abrir filtros</span>
+              <SlidersHorizontalIcon className="size-4" aria-hidden="true" />
             </SheetTrigger>
             <SheetContent side="left" className="p-0">
               <ScrollArea className="h-full p-6">
@@ -296,7 +300,7 @@ export const FilterProducts = ({
             <h3 className="hidden min-w-[220px] basis-1/5 text-lg font-semibold text-foreground lg:block">
               Filtros
             </h3>
-            <Breadcrumb>
+            <Breadcrumb className="hidden lg:block">
               <BreadcrumbList>
                 <BreadcrumbItem>
                   <BreadcrumbLink href="/">Home</BreadcrumbLink>
@@ -337,7 +341,9 @@ export const FilterProducts = ({
             Ordenar<span className="hidden xs:inline"> Por</span>:
           </p>
           <Select
-            defaultValue={SORT_OPTIONS[0]!.value}
+            defaultValue={
+              searchParams.get("ordenarPor") ?? SORT_OPTIONS[0]!.value
+            }
             onValueChange={(value) => {
               const sortKey = "ordenarPor";
               const params = new URLSearchParams(searchParams);
@@ -349,7 +355,10 @@ export const FilterProducts = ({
               });
             }}
           >
-            <SelectTrigger className="w-[160px]">
+            <SelectTrigger
+              className="w-[160px]"
+              aria-label="Ordenamiento seleccionado"
+            >
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -367,7 +376,9 @@ export const FilterProducts = ({
       </div>
       <div className="flex gap-8">
         {!isMobile && (
-          <div className="min-w-[220px] basis-1/5">{filterContent}</div>
+          <div className="hidden min-w-[220px] basis-1/5 lg:block">
+            {filterContent}
+          </div>
         )}
         {children}
       </div>
@@ -377,17 +388,25 @@ export const FilterProducts = ({
 
 const PriceFilterSlider = () => {
   const searchParams = useSearchParams();
+
+  const maxPriceParams = searchParams.get("max");
+  const minPriceParams = searchParams.get("min");
+  const defaultPriceValues = [
+    maxPriceParams ? Number(maxPriceParams) : PRICE_FILTER.default[0],
+    minPriceParams ? Number(minPriceParams) : PRICE_FILTER.default[1],
+  ];
+
   const pathname = usePathname();
   const router = useRouter();
-  const [priceValues, setPriceValues] = useState(
-    PRICE_FILTER.default as [number, number],
-  );
+
+  const [priceValues, setPriceValues] = useState(defaultPriceValues);
+
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   return (
     <>
       <MultipleRangeSlider
-        defaultValue={PRICE_FILTER.default as [number, number]}
+        defaultValue={defaultPriceValues}
         min={PRICE_FILTER.default[0]}
         max={PRICE_FILTER.default[1]}
         step={PRICE_FILTER.step}
@@ -407,13 +426,15 @@ const PriceFilterSlider = () => {
             if (newMax === PRICE_FILTER.default[1]) params.delete("max");
             else params.set("max", newMax!.toFixed(2));
 
-            router.replace(pathname + "?" + params.toString());
+            router.replace(pathname + "?" + params.toString(), {
+              scroll: false,
+            });
           }, 400);
         }}
       />
       <div className="flex justify-between">
-        <span>{formatPrice(priceValues[0])}</span>
-        <span>{formatPrice(priceValues[1])}</span>
+        <span>{formatPrice(priceValues[0]!)}</span>
+        <span>{formatPrice(priceValues[1]!)}</span>
       </div>
     </>
   );

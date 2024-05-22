@@ -4,6 +4,7 @@ import Link from "next/link";
 const links = [
   {
     href: "https://web.whatsapp.com/send?phone=51942641075",
+    label: "WhatsApp",
     icon: (
       <svg
         stroke="currentColor"
@@ -20,6 +21,7 @@ const links = [
   },
   {
     href: "https://www.instagram.com/kioga.pe",
+    label: "Instagram",
     icon: (
       <svg
         stroke="currentColor"
@@ -36,6 +38,7 @@ const links = [
   },
   {
     href: "https://www.facebook.com/kioga.pe",
+    label: "Facebook",
     icon: (
       <svg
         stroke="currentColor"
@@ -52,6 +55,7 @@ const links = [
   },
   {
     href: "https://www.tiktok.com/@kioga.pe",
+    label: "TikTok",
     icon: (
       <svg
         stroke="currentColor"
@@ -68,6 +72,7 @@ const links = [
   },
   {
     href: "https://m.me/kioga.pe",
+    label: "Messenger",
     icon: (
       <svg
         stroke="currentColor"
@@ -94,12 +99,13 @@ const Footer = () => {
             Empresa dedicada a la venta y servicios de computo en general
           </p>
           <div className="flex gap-2">
-            {links.map(({ href, icon }) => (
+            {links.map(({ href, icon, label }) => (
               <Link
                 href={href}
                 key={href}
                 target="_blank"
                 className="rounded-md bg-zinc-50 from-primary to-secondary p-1 text-background transition-colors hover:bg-gradient-to-bl"
+                aria-label={label}
               >
                 {icon}
               </Link>

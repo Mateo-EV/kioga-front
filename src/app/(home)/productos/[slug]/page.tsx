@@ -62,7 +62,7 @@ export default function ProductsSlugPage({ params: { slug } }: Params) {
           </Card>
         </div>
       </section>
-      <section className="container relative space-y-4 py-6">
+      <section className="container relative space-y-4 overflow-hidden py-6">
         <GradientDecorator />
         <H2>Productos Similares</H2>
         <ProductsCarousel products={products} />

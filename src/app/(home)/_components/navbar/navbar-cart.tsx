@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   Sheet,
@@ -12,54 +12,69 @@ import {
 } from "@/components/ui/sheet";
 import { useCart, type ProductCart as ProductCartProps } from "@/hooks/useCart";
 import { formatPrice } from "@/lib/utils";
-import { ShoppingBagIcon, ShoppingCartIcon, Trash2Icon } from "lucide-react";
+import {
+  ChevronLeftIcon,
+  ShoppingBagIcon,
+  ShoppingCartIcon,
+  Trash2Icon,
+  XIcon,
+} from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import ManageCartQuantity from "../../productos/[slug]/_components/manage-cart-quantity";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 function NavbarCart() {
   const { products, removeAllProducts } = useCart();
-
+  const subtotal = products.reduce((acc, product) => {
+    const priceDisccounted = product.discount
+      ? product.price * (1 - product.discount)
+      : product.price;
+    return acc + priceDisccounted * product.quantity;
+  }, 0);
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <div className="flex cursor-pointer items-center gap-1">
-          <div className="ml-2 hidden flex-col text-sm md:flex">
+        <button className="flex cursor-pointer items-center gap-1">
+          <div className="ml-2 hidden flex-col text-left text-sm md:flex">
             <span>Mi carrito</span>
-            <b>S/ 0.00</b>
+            <b>{formatPrice(subtotal)}</b>
           </div>
-          <Button variant="ghost" size="icon" className="relative">
-            <ShoppingCartIcon className="size-5" />
+          <div
+            className={buttonVariants({
+              variant: "ghost",
+              size: "icon",
+              className: "relative hover:bg-transparent",
+            })}
+          >
+            <span className="sr-only">Buscar Productos</span>
+            <ShoppingCartIcon className="size-5" aria-hidden="true" />
             <span className="absolute right-[2px] top-[2px] size-4 rounded bg-primary text-center text-xs leading-4 text-primary-foreground">
               {products.length}
             </span>
-          </Button>
-        </div>
+          </div>
+        </button>
       </SheetTrigger>
-      <SheetContent className="flex flex-col">
-        <SheetHeader>
+      <SheetContent className="flex w-full flex-col">
+        <SheetHeader className="flex-row items-center justify-center gap-2 space-y-0">
+          <SheetClose>
+            <span className="sr-only">Cerrar Carrito de Compras</span>
+            <ChevronLeftIcon className="size-4" aria-hidden="true" />
+          </SheetClose>
           <SheetTitle>Carro de Compras</SheetTitle>
         </SheetHeader>
         {products.length > 0 ? (
           <>
             <div className="flex-1">
               <p className="mb-2">Productos</p>
-              {products.map((product, i) => (
-                <ProductCart product={product} key={i} />
-              ))}
+              <ScrollArea className="-mr-3 h-[calc(100vh-14rem)] pr-3">
+                {products.map((product, i) => (
+                  <ProductCart product={product} key={i} />
+                ))}
+              </ScrollArea>
             </div>
             <div className="flex flex-col items-center gap-4">
-              <p>
-                Subtotal:{" "}
-                {formatPrice(
-                  products.reduce((acc, product) => {
-                    const priceDisccounted = product.discount
-                      ? product.price * (1 - product.discount)
-                      : product.price;
-                    return acc + priceDisccounted;
-                  }, 0),
-                )}
-              </p>
+              <p>Subtotal: {formatPrice(subtotal)}</p>
               <div className="flex w-full gap-4">
                 <Button className="flex-1 gap-2">
                   Continuar <ShoppingBagIcon className="size-4" />
@@ -102,11 +117,14 @@ const ProductCart = ({ product }: { product: ProductCartProps }) => {
         <Image
           src={product.imageSrc}
           alt={product.slug}
-          width={100}
-          height={100}
+          width={90}
+          height={90}
+          className="p-1"
         />
-        <div className="flex-1 space-y-1 text-sm">
-          <p className="font-semibold">{product.name}</p>
+        <div className="flex-1 space-y-1 overflow-hidden pt-2 text-sm">
+          <p className="block w-full overflow-hidden text-ellipsis whitespace-nowrap font-semibold ">
+            {product.name}
+          </p>
           <p className="text-muted-foreground">Precio Unitario</p>
           <p className="text-xs">{formatPrice(priceDisccounted)}</p>
           {product.discount && (
@@ -116,7 +134,7 @@ const ProductCart = ({ product }: { product: ProductCartProps }) => {
           )}
         </div>
       </div>
-      <div className="flex justify-between px-4 pb-4">
+      <div className="flex justify-between px-4 pb-4 pt-2">
         <ManageCartQuantity
           setQuantity={setQuantity}
           defaultQuantity={product.quantity}

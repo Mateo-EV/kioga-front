@@ -14,8 +14,13 @@ const NavbarMobileItems = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="-mr-2 md:hidden" size="icon" variant="ghost">
-          <AlignJustifyIcon className="size-5" />
+        <Button
+          className="-mr-2 hover:bg-transparent md:hidden"
+          size="icon"
+          variant="ghost"
+        >
+          <span className="sr-only">Open sidebar</span>
+          <AlignJustifyIcon className="size-5" aria-hidden="true" />
         </Button>
       </SheetTrigger>
       <SheetContent>
