@@ -32,8 +32,8 @@ export default function GalleryCategoriesPage({
       <H1 className="text-center">{slug}</H1>
       <FilterProducts type="categories" categoryName={slug}>
         <div className="grid flex-1 grid-cols-[repeat(auto-fill,minmax(min(250px,100%),1fr))] gap-4">
-          {products.map(({ id, ...product }) => (
-            <ProductCard key={id} {...product} />
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </FilterProducts>
