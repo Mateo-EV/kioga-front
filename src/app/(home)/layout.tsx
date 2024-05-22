@@ -1,6 +1,53 @@
 import Navbar from "@/app/(home)/_components/navbar/navbar";
 import Footer from "./_components/footer";
 import GradientDecorator from "./_components/gradient-decorator";
+import { siteConfig } from "@/config/site";
+
+export const metadata = {
+  description: siteConfig.description,
+  keywords: [
+    "Kioga",
+    "Computación",
+    "Hardware",
+    "Electrónica",
+    "Laptops",
+    "PC",
+    "Monitores",
+    "Componentes",
+    "Placas",
+    "Procesadores",
+    "Almacenamiento",
+    "Memoria",
+  ],
+  authors: [
+    {
+      name: "mateoEv",
+    },
+  ],
+  creator: "mateoEv",
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    type: "website",
+    locale: "es_PE",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: `${siteConfig.url}/site.webmanifest`,
+};
+
 export default function HomeLayout({
   children,
 }: {

@@ -1,7 +1,11 @@
 import { products } from "@/config/const";
 import { ProductCard } from "../_components/product-card";
 import { H1 } from "@/components/typography";
-import { FilterProducts } from "@/components/filter-products";
+import { FilterProducts } from "@/app/(home)/_components/filter-products";
+
+export const metadata = {
+  title: "Productos",
+};
 
 export default function GalleryProductsPage() {
   return (

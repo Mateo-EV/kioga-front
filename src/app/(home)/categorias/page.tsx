@@ -6,6 +6,10 @@ import { categories } from "@/config/const";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Categorias",
+};
+
 export default function CategoriesPage() {
   return (
     <section className="container space-y-4 py-6 md:py-10">

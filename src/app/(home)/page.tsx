@@ -25,14 +25,12 @@ export default function HomePage() {
         sizes="(min-width: 640px) 275px, (min-width: 992px) 319px, 210px"
         alt="headphone-divided-2"
       />
-      {/* <TracingBeam> */}
       <StartSection />
       <WeekProductsSection />
       <CategoriesSection />
       <BrandsCarousel />
       <AboutUsSection />
       <SubscriptionNewsLetterSection />
-      {/* </TracingBeam> */}
     </>
   );
 }

@@ -122,7 +122,7 @@ export const SubscriptionNewsLetterSection = () => (
         <Image src={SubscribeImage} alt="equipo" className="object-cover" />
       </div>
       <div className="space-y-4 md:order-1 md:basis-1/2">
-        <span className="rounded-lg bg-primary px-4 py-1 text-sm text-foreground">
+        <span className="hidden rounded-lg bg-primary px-4 py-1 text-sm text-foreground xs:inline">
           Suscríbete
         </span>
         <H2>Suscríbete al boletín informativo</H2>

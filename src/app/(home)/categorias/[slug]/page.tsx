@@ -1,7 +1,26 @@
 import { ProductCard } from "@/app/(home)/_components/product-card";
-import { FilterProducts } from "@/components/filter-products";
+import { FilterProducts } from "@/app/(home)/_components/filter-products";
 import { H1 } from "@/components/typography";
 import { products } from "@/config/const";
+import { type Metadata, type ResolvingMetadata } from "next";
+
+type Params = {
+  params: { slug: string };
+};
+
+export async function generateMetadata(
+  { params: { slug } }: Params,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const previousImages = (await parent).openGraph?.images ?? [];
+
+  return {
+    title: slug,
+    openGraph: {
+      images: ["/categoria.jpg", ...previousImages],
+    },
+  };
+}
 
 export default function GalleryCategoriesPage({
   params: { slug },

@@ -1,22 +1,33 @@
 import ProductImage from "@/assets/img/producto1.png";
-import AddCartQuantity from "@/components/add-cart-quantity";
 import { H1, H2, Paragraph } from "@/components/typography";
 import { BreadcrumbController } from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { products } from "@/config/const";
-import { formatPrice } from "@/lib/utils";
-import { ShoppingCartIcon } from "lucide-react";
+import { type Metadata, type ResolvingMetadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductsCarousel } from "../../_components/carousel/products-carousel";
 import GradientDecorator from "../../_components/gradient-decorator";
+import AddCart from "./_components/add-cart";
 
-export default function ProductsSlugPage({
-  params: { slug },
-}: {
+type Params = {
   params: { slug: string };
-}) {
+};
+
+export async function generateMetadata(
+  { params: { slug } }: Params,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const previousImages = (await parent).openGraph?.images ?? [];
+
+  return {
+    title: slug,
+    openGraph: {
+      images: ["/producto.jpg", ...previousImages],
+    },
+  };
+}
+export default function ProductsSlugPage({ params: { slug } }: Params) {
   return (
     <>
       <section className="container space-y-4 py-6 md:py-10">
@@ -44,20 +55,7 @@ export default function ProductsSlugPage({
               repellendus eaque ipsam voluptatem veniam commodi, iusto
               exercitationem atque iure repellat numquam eligendi.
             </Paragraph>
-            <div className="flex items-center justify-between gap-8">
-              <div className="font-semibold">
-                <span className="block md:text-2xl">{formatPrice(500)}</span>
-                <span className="md:text-md block text-muted-foreground line-through">
-                  {formatPrice(400)}
-                </span>
-              </div>
-              <AddCartQuantity />
-            </div>
-
-            <Button className="w-full gap-2">
-              Agregar al carro
-              <ShoppingCartIcon className="size-4" />
-            </Button>
+            <AddCart />
           </div>
           <Card className="flex basis-1/4 items-center justify-center overflow-hidden">
             <Image src={ProductImage} alt="Producto" />

@@ -1,4 +1,5 @@
 import "@/assets/styles/globals.css";
+import { siteConfig } from "@/config/site";
 
 import { Poppins } from "next/font/google";
 
@@ -9,7 +10,13 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Kioga",
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

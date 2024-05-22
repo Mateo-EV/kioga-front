@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,25 +8,22 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { type products } from "@/config/const";
+import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/lib/utils";
 import { ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-type ProductCardProps = React.ComponentPropsWithoutRef<typeof Card> &
-  Omit<(typeof products)[number], "id">;
+type ProductCardProps = React.ComponentPropsWithoutRef<typeof Card> & {
+  product: (typeof products)[number];
+};
 
 export const ProductCard = ({
-  name,
-  category,
-  brand,
-  imageSrc,
-  price,
-  discount,
-  slug,
+  product: { name, category, brand, imageSrc, price, discount, slug },
   ...props
 }: ProductCardProps) => {
   const priceDisccounted = discount ? price * (1 - discount) : price;
+  const { addProduct } = useCart();
   return (
     <Card {...props}>
       <CardHeader>
@@ -64,7 +63,22 @@ export const ProductCard = ({
             </span>
           )}
         </div>
-        <Button variant="outline">
+        <Button
+          variant="outline"
+          onClick={() =>
+            addProduct({
+              id: 0,
+              name,
+              category,
+              brand,
+              imageSrc,
+              price,
+              discount,
+              slug,
+              quantity: 1,
+            })
+          }
+        >
           <ShoppingCartIcon className="size-5" />
         </Button>
       </CardFooter>

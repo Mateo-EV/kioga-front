@@ -1,5 +1,4 @@
 import ProductoImage from "@/assets/img/producto1.png";
-import { MoveDownIcon, MoveUpIcon } from "lucide-react";
 
 export const colors = {
   primary: "#ff6600",
@@ -208,7 +207,6 @@ export const products = [
   {
     id: 1,
     name: "Procesador AMD Ryzen 7 4500",
-
     slug: "procesador-amd-ryzen-7-4600g",
     category: "Procesadores",
     imageSrc: ProductoImage,
@@ -553,33 +551,5 @@ export const aboutUsData = [
     title: "Ética",
     content:
       "Operamos de manera ética y transparente en todas nuestras acciones",
-  },
-];
-
-export const orderByParameters = [
-  {
-    content: "Mejor Vendido",
-  },
-  {
-    content: "A - Z",
-  },
-  {
-    content: "Z - A",
-  },
-  {
-    content: "Precio",
-    icon: MoveUpIcon,
-  },
-  {
-    content: "Precio",
-    icon: MoveDownIcon,
-  },
-  {
-    content: "Fecha",
-    icon: MoveUpIcon,
-  },
-  {
-    content: "Fecha",
-    icon: MoveDownIcon,
   },
 ];

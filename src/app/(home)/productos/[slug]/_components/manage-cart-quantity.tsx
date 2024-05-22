@@ -1,10 +1,17 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { Button } from "./ui/button";
+import { useRef } from "react";
+import { Button } from "../../../../../components/ui/button";
 
-function AddCartQuantity() {
-  const [quantity, setQuantity] = useState(1);
+type ManageCartQuantityProps = {
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+  defaultQuantity?: number;
+};
+
+function ManageCartQuantity({
+  setQuantity,
+  defaultQuantity = 1,
+}: ManageCartQuantityProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -15,9 +22,9 @@ function AddCartQuantity() {
         size="icon"
         onClick={() => {
           setQuantity((prevQuantity) => {
-            if (prevQuantity <= 0) {
-              inputRef.current!.value = "0";
-              return 0;
+            if (prevQuantity <= 1) {
+              inputRef.current!.value = "1";
+              return 1;
             } else {
               inputRef.current!.value = String(prevQuantity - 1);
               return prevQuantity - 1;
@@ -31,27 +38,30 @@ function AddCartQuantity() {
         type="text"
         className="w-10 rounded-md border border-input bg-background text-center outline-none md:w-20"
         ref={inputRef}
-        defaultValue={1}
+        defaultValue={defaultQuantity}
         onChange={(e) => {
           const value = e.target.value;
           if (value === "") {
-            setQuantity(0);
+            setQuantity(1);
             return;
           }
           const formattedValue = Number(value);
           if (isNaN(formattedValue)) {
-            setQuantity(0);
+            setQuantity(1);
             inputRef.current!.value = "";
           } else if (formattedValue >= 10) {
             setQuantity(10);
             inputRef.current!.value = "10";
+          } else if (formattedValue <= 0) {
+            setQuantity(1);
+            inputRef.current!.value = "1";
           } else {
             setQuantity(formattedValue);
           }
         }}
         onBlur={(e) => {
           const value = e.target.value;
-          if (value === "") inputRef.current!.value = "0";
+          if (value === "") inputRef.current!.value = "1";
         }}
       />
       <Button
@@ -76,4 +86,4 @@ function AddCartQuantity() {
   );
 }
 
-export default AddCartQuantity;
+export default ManageCartQuantity;
