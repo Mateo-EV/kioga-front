@@ -5,7 +5,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { ProductCard } from "../product-card";
+import { ProductCard } from "../products/product-card";
 import { type products } from "@/config/const";
 
 type ProductsCarouselProps = {

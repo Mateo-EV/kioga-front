@@ -1,4 +1,4 @@
-import { ProductCard } from "@/app/(home)/_components/product-card";
+import { ProductCard } from "@/app/(home)/_components/products/product-card";
 import { FilterProducts } from "@/app/(home)/_components/filter-products";
 import { H1 } from "@/components/typography";
 import { products } from "@/config/const";

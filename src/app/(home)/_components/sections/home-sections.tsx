@@ -6,11 +6,11 @@ import { Input } from "@/components/ui/input";
 import { aboutUsData, products, top3Categories } from "@/config/const";
 import { ComputerIcon, EyeIcon, Layers2Icon } from "lucide-react";
 import Image from "next/image";
-import ProductsFullScreenCarousel from "./carousel/products-fullscreen-carousel";
+import ProductsFullScreenCarousel from "../carousel/products-fullscreen-carousel";
 import { TopCategoriesTab } from "./top-categories-tab";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import GradientDecorator from "./gradient-decorator";
+import GradientDecorator from "../gradient-decorator";
 
 export const StartSection = () => {
   return (

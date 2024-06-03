@@ -7,7 +7,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import React, { useEffect, useState } from "react";
-import { ProductCard } from "../product-card";
+import { ProductCard } from "../products/product-card";
 import { cn } from "@/lib/utils";
 import { type products } from "@/config/const";
 

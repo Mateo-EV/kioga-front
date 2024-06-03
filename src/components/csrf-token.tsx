@@ -4,14 +4,20 @@ import axios from "@/lib/axios";
 import { useEffect, useRef } from "react";
 
 const CSRFToken = () => {
-  const fetched = useRef(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval>>();
 
   useEffect(() => {
-    if (!fetched.current) {
-      void axios.get("/sanctum/csrf-cookie");
+    void axios.get("/sanctum/csrf-cookie");
+    intervalRef.current = setInterval(
+      () => {
+        void axios.get("/sanctum/csrf-cookie");
+      },
+      5 * 60 * 1000,
+    );
 
-      fetched.current = true;
-    }
+    return () => {
+      clearInterval(intervalRef.current);
+    };
   }, []);
 
   return null;

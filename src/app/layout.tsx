@@ -1,4 +1,7 @@
 import "@/assets/styles/globals.css";
+import "react-loading-skeleton/dist/skeleton.css";
+
+import CSRFToken from "@/components/csrf-token";
 import { siteConfig } from "@/config/site";
 
 import { Poppins } from "next/font/google";
@@ -31,6 +34,7 @@ export default function RootLayout({
       <body
         className={`antialiased ${poppins.variable} relative min-w-72 font-main`}
       >
+        <CSRFToken />
         {authModal}
         {children}
       </body>

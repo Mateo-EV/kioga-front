@@ -24,7 +24,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { categories } from "@/config/const";
 import { formatPrice } from "@/lib/utils";
 import { useMediaQuery } from "@mantine/hooks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -57,7 +56,7 @@ const AVAILIBILITY_FILTER = {
 const PRICE_FILTER = {
   id: "precio",
   name: "Precio",
-  default: [5, 2500],
+  default: [5, 4000],
   step: 0.01,
   diff: 10,
 } as const;
@@ -65,30 +64,11 @@ const PRICE_FILTER = {
 const CATEGORY_FILTERS = {
   id: "categoria",
   name: "Categorías",
-  options: categories,
 } as const;
 
 const BRAND_FILTERS = {
   id: "marca",
   name: "Marcas",
-  options: [
-    {
-      label: "Antec",
-      value: "antec",
-    },
-    {
-      label: "Antryx",
-      value: "antryx",
-    },
-    {
-      label: "Gamemax",
-      value: "gamemax",
-    },
-    {
-      label: "Rysen",
-      value: "rysen",
-    },
-  ],
 } as const;
 
 const FILTERS_IDS = [
@@ -105,49 +85,44 @@ const SORT_OPTIONS = [
   },
   {
     label: "A - Z",
-    value: "nombre-asc",
+    value: "name-asc",
   },
   {
     label: "Z - A",
-    value: "nombre-desc",
+    value: "name-desc",
   },
   {
     label: "Precio",
     icon: MoveDownIcon,
-    value: "precio",
+    value: "price",
   },
   {
     label: "Precio",
     icon: MoveUpIcon,
-    value: "precio-asc",
-  },
-  {
-    label: "Fecha",
-    icon: MoveDownIcon,
-    value: "fecha",
-  },
-  {
-    label: "Fecha",
-    icon: MoveUpIcon,
-    value: "fecha-asc",
+    value: "price-asc",
   },
 ];
 
 type FilterProductsProps = {
   children: React.ReactNode;
+  brands: Brand[];
 } & (
   | {
       type?: "global";
+      categories: Category[];
     }
   | {
       type: "categories";
       categoryName: string;
+      categories: undefined;
     }
 );
 
 export const FilterProducts = ({
   children,
   type = "global",
+  categories = [],
+  brands = [],
   ...extraData
 }: FilterProductsProps) => {
   const isMobile = useMediaQuery("(max-width: 991px)");
@@ -220,24 +195,24 @@ export const FilterProducts = ({
             <AccordionTrigger>{CATEGORY_FILTERS.name}</AccordionTrigger>
             <AccordionContent>
               <div className="space-y-2">
-                {CATEGORY_FILTERS.options.map(({ text, value }) => (
-                  <Label key={value} className="flex items-center gap-2">
+                {categories.map(({ id, name, slug }) => (
+                  <Label key={id} className="flex items-center gap-2">
                     <Checkbox
-                      id={value}
+                      id={slug}
                       checked={searchParams
                         .getAll(CATEGORY_FILTERS.id)
-                        ?.includes(value)}
+                        ?.includes(slug)}
                       onCheckedChange={(v) => {
                         applyFilters(
                           CATEGORY_FILTERS.id,
-                          value,
+                          slug,
                           v ? "append" : "delete",
                         );
                       }}
-                      aria-label={text}
+                      aria-label={name}
                     />
                     <span className="overflow-hidden text-ellipsis whitespace-nowrap text-muted-foreground">
-                      {text}
+                      {name}
                     </span>
                   </Label>
                 ))}
@@ -251,24 +226,24 @@ export const FilterProducts = ({
           <AccordionTrigger>{BRAND_FILTERS.name}</AccordionTrigger>
           <AccordionContent>
             <div className="space-y-2">
-              {BRAND_FILTERS.options.map(({ label, value }) => (
-                <Label key={value} className="flex items-center gap-2">
+              {brands.map(({ id, name, slug }) => (
+                <Label key={id} className="flex items-center gap-2">
                   <Checkbox
-                    id={value}
+                    id={slug}
                     checked={searchParams
                       .getAll(BRAND_FILTERS.id)
-                      ?.includes(value)}
+                      ?.includes(slug)}
                     onCheckedChange={(v) => {
                       applyFilters(
                         BRAND_FILTERS.id,
-                        value,
+                        slug,
                         v ? "append" : "delete",
                       );
                     }}
-                    aria-label={label}
+                    aria-label={name}
                   />
                   <span className="overflow-hidden text-ellipsis whitespace-nowrap text-muted-foreground">
-                    {label}
+                    {name}
                   </span>
                 </Label>
               ))}
@@ -277,6 +252,7 @@ export const FilterProducts = ({
         </AccordionItem>
       </Accordion>
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [applyFilters, searchParams, type]);
 
   return (
@@ -389,11 +365,11 @@ export const FilterProducts = ({
 const PriceFilterSlider = () => {
   const searchParams = useSearchParams();
 
-  const maxPriceParams = searchParams.get("max");
   const minPriceParams = searchParams.get("min");
+  const maxPriceParams = searchParams.get("max");
   const defaultPriceValues = [
-    maxPriceParams ? Number(maxPriceParams) : PRICE_FILTER.default[0],
-    minPriceParams ? Number(minPriceParams) : PRICE_FILTER.default[1],
+    minPriceParams ? Number(minPriceParams) : PRICE_FILTER.default[0],
+    maxPriceParams ? Number(maxPriceParams) : PRICE_FILTER.default[1],
   ];
 
   const pathname = usePathname();

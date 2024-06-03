@@ -2,6 +2,7 @@
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
   SheetClose,
@@ -17,21 +18,21 @@ import {
   ShoppingBagIcon,
   ShoppingCartIcon,
   Trash2Icon,
-  XIcon,
 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import ManageCartQuantity from "../../productos/[slug]/_components/manage-cart-quantity";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import ManageCartQuantity from "../cart/manage-cart-quantity";
 
 function NavbarCart() {
   const { products, removeAllProducts } = useCart();
+
   const subtotal = products.reduce((acc, product) => {
     const priceDisccounted = product.discount
       ? product.price * (1 - product.discount)
       : product.price;
     return acc + priceDisccounted * product.quantity;
   }, 0);
+
   return (
     <Sheet>
       <SheetTrigger asChild>

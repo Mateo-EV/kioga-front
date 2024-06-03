@@ -5,7 +5,7 @@ import { type top3Categories } from "@/config/const";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
-import { ProductsCarousel } from "./carousel/products-carousel";
+import { ProductsCarousel } from "../carousel/products-carousel";
 
 type TopCategoriesTabProps = {
   categories: typeof top3Categories;

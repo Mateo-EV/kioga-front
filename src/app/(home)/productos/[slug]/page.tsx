@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProductsCarousel } from "../../_components/carousel/products-carousel";
 import GradientDecorator from "../../_components/gradient-decorator";
-import AddCart from "./_components/add-cart";
+import AddCart from "../../_components/cart/add-cart";
 
 type Params = {
   params: { slug: string };

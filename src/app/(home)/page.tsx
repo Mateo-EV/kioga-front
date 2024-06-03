@@ -5,7 +5,7 @@ import {
   StartSection,
   SubscriptionNewsLetterSection,
   WeekProductsSection,
-} from "./_components/home-sections";
+} from "./_components/sections/home-sections";
 import HeadPhone1Image from "@/assets/img/headphone1.png";
 import HeadPhone2Image from "@/assets/img/headphone2.png";
 import Image from "next/image";
