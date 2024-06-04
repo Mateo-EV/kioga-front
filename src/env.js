@@ -18,7 +18,7 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_BACKEND_HOST: z.string(),
     NEXT_PUBLIC_BACKEND_PROTOCOL: z.enum(["http", "https"]),
-    NEXT_PUBLIC_BACKEND_PORT: z.string(),
+    NEXT_PUBLIC_BACKEND_PORT: z.string().optional(),
     NEXT_PUBLIC_BACKEND_URL: z.string().url(),
     NEXT_PUBLIC_APP_URL: z.string().url(),
   },
