@@ -1,4 +1,3 @@
-import ProductImage from "@/assets/img/producto1.png";
 import { H1, H2, Paragraph } from "@/components/typography";
 import { BreadcrumbController } from "@/components/ui/breadcrumb";
 import { Card } from "@/components/ui/card";

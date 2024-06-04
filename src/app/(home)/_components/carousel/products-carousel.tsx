@@ -5,7 +5,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { ProductCard } from "../products/product-card";
 import { type products } from "@/config/const";
 
 type ProductsCarouselProps = {
@@ -21,9 +20,7 @@ export const ProductsCarousel = ({ products }: ProductsCarouselProps) => {
             key={product.id}
             className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
           >
-            <div className="p-1">
-              <ProductCard product={product} />
-            </div>
+            <div className="p-1">{/* <ProductCard product={product} /> */}</div>
           </CarouselItem>
         ))}
       </CarouselContent>
