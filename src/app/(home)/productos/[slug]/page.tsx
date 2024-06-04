@@ -9,6 +9,8 @@ import Link from "next/link";
 import { ProductsCarousel } from "../../_components/carousel/products-carousel";
 import GradientDecorator from "../../_components/gradient-decorator";
 import AddCart from "../../_components/cart/add-cart";
+import { api } from "@/server/fetch";
+import { notFound } from "next/navigation";
 
 type Params = {
   params: { slug: string };
@@ -27,7 +29,13 @@ export async function generateMetadata(
     },
   };
 }
-export default function ProductsSlugPage({ params: { slug } }: Params) {
+export default async function ProductsSlugPage({ params: { slug } }: Params) {
+  const product = await api<Product & { category: Category; brand: Brand }>(
+    "/products/" + slug,
+  );
+
+  if (!product) notFound();
+
   return (
     <>
       <section className="container space-y-4 py-6 md:py-10">
@@ -39,26 +47,29 @@ export default function ProductsSlugPage({ params: { slug } }: Params) {
                 { href: "/productos", name: "Productos" },
               ]}
             />
-            <H1>Procesador AMD Ryzen 7 4600g</H1>
+            <H1>{product.name}</H1>
             <div className="text-sm text-muted-foreground">
               <Link
-                href={"/categorias/" + "procesadores"}
+                href={"/categorias/" + product.category.slug}
                 className="underline-offset-4 hover:underline"
               >
-                Procesadores
+                {product.category.name}
               </Link>{" "}
-              · Rysen
+              ·{" "}
+              <Link
+                href={"/brands/" + product.brand.slug}
+                className="underline-offset-4 hover:underline"
+              >
+                {product.brand.name}
+              </Link>
             </div>
             <Paragraph className="text-muted-foreground">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet
-              repudiandae labore maiores quae itaque sint tempore voluptate
-              repellendus eaque ipsam voluptatem veniam commodi, iusto
-              exercitationem atque iure repellat numquam eligendi.
+              {product.description}
             </Paragraph>
-            <AddCart />
+            <AddCart product={product} />
           </div>
-          <Card className="flex basis-1/4 items-center justify-center overflow-hidden">
-            <Image src={ProductImage} alt="Producto" />
+          <Card className="relative flex basis-1/4 items-center justify-center overflow-hidden">
+            <Image src={product.image} sizes="270px" fill alt="Producto" />
           </Card>
         </div>
       </section>

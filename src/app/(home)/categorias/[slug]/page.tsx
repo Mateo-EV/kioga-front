@@ -4,6 +4,9 @@ import { H1 } from "@/components/typography";
 import { products } from "@/config/const";
 import { type Metadata, type ResolvingMetadata } from "next";
 import { Suspense } from "react";
+import { api } from "@/server/fetch";
+import { notFound } from "next/navigation";
+import GalleryProducts from "../../_components/products/gallery-products";
 
 type Params = {
   params: { slug: string };
@@ -23,23 +26,27 @@ export async function generateMetadata(
   };
 }
 
-export default function GalleryCategoriesPage({
+export default async function GalleryCategoriesPage({
   params: { slug },
 }: {
   params: { slug: string };
 }) {
+  const category = await api<Category & { brands: Brand[] }>(
+    "/categories/" + slug,
+  );
+
+  if (!category) notFound();
+
   return (
     <section className="container space-y-4 py-6 md:py-10">
-      <H1 className="text-center">{slug}</H1>
-      <Suspense>
-        <FilterProducts type="categories" categoryName={slug}>
-          <div className="grid flex-1 grid-cols-[repeat(auto-fill,minmax(min(250px,100%),1fr))] gap-4">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </FilterProducts>
-      </Suspense>
+      <H1 className="text-center">{category.name}</H1>
+      <FilterProducts
+        type="categories"
+        brands={category.brands}
+        category={category}
+      >
+        <GalleryProducts url={"api/products/category/" + slug} />
+      </FilterProducts>
     </section>
   );
 }

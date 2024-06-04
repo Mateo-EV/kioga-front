@@ -27,10 +27,7 @@ function NavbarCart() {
   const { products, removeAllProducts } = useCart();
 
   const subtotal = products.reduce((acc, product) => {
-    const priceDisccounted = product.discount
-      ? product.price * (1 - product.discount)
-      : product.price;
-    return acc + priceDisccounted * product.quantity;
+    return acc + product.price_discounted * product.quantity;
   }, 0);
 
   return (
@@ -105,18 +102,13 @@ function NavbarCart() {
 }
 
 const ProductCart = ({ product }: { product: ProductCartProps }) => {
-  const [quantity, setQuantity] = useState(product.quantity);
-  const priceDisccounted = product.discount
-    ? product.price * (1 - product.discount)
-    : product.price;
-
-  const { removeProduct } = useCart();
+  const { setQuantityByProductId, removeProduct } = useCart();
 
   return (
     <Card className="mb-2">
       <div className="flex items-center">
         <Image
-          src={product.imageSrc}
+          src={product.image}
           alt={product.slug}
           width={90}
           height={90}
@@ -127,8 +119,8 @@ const ProductCart = ({ product }: { product: ProductCartProps }) => {
             {product.name}
           </p>
           <p className="text-muted-foreground">Precio Unitario</p>
-          <p className="text-xs">{formatPrice(priceDisccounted)}</p>
-          {product.discount && (
+          <p className="text-xs">{formatPrice(product.price_discounted)}</p>
+          {product.discount === 0 && (
             <p className="text-xs text-muted-foreground line-through">
               {formatPrice(product.price)}
             </p>
@@ -137,7 +129,7 @@ const ProductCart = ({ product }: { product: ProductCartProps }) => {
       </div>
       <div className="flex justify-between px-4 pb-4 pt-2">
         <ManageCartQuantity
-          setQuantity={setQuantity}
+          setQuantity={setQuantityByProductId(product.id)}
           defaultQuantity={product.quantity}
         />
         <Button

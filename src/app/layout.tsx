@@ -1,10 +1,12 @@
 import "@/assets/styles/globals.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
-import CSRFToken from "@/components/csrf-token";
 import { siteConfig } from "@/config/site";
 
 import { Poppins } from "next/font/google";
+
+import { Toaster } from "sonner";
+import CSRFToken from "@/components/csrf-token";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -37,6 +39,7 @@ export default function RootLayout({
         <CSRFToken />
         {authModal}
         {children}
+        <Toaster richColors />
       </body>
     </html>
   );

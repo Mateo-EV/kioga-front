@@ -1,10 +1,11 @@
-import CategoryImage from "@/assets/img/category1.png";
 import { H1 } from "@/components/typography";
 import { BreadcrumbController } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { categories } from "@/config/const";
+import { Skeleton } from "@/components/ui/skeleton";
+import { api } from "@/server/fetch";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Categorias",
@@ -22,28 +23,45 @@ export default function CategoriesPage() {
         ]}
         actualPage="Categorías"
       />
-      <div className="relative flex flex-wrap items-center justify-center gap-10">
-        {categories.map(({ text, value }) => (
-          <Link href={"/categorias/" + value} key={value}>
-            <Card key={value}>
-              <CardHeader>
-                <CardTitle className="text-center">{text}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="size-full overflow-hidden rounded-md">
-                  <Image
-                    src={CategoryImage}
-                    alt={value}
-                    width={370}
-                    height={180}
-                    className="transition hover:scale-110 hover:opacity-80"
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
-      </div>
+      <Suspense fallback={<CategoriesListSkeleton />}>
+        <CategoriesList />
+      </Suspense>
     </section>
   );
 }
+
+const CategoriesListSkeleton = () => {
+  return (
+    <div className="relative flex flex-wrap items-center justify-center gap-10">
+      {Array.from({ length: 9 }).map((_, i) => (
+        <Skeleton key={i} className="size-full" containerClassName="size-96" />
+      ))}
+    </div>
+  );
+};
+
+const CategoriesList = async () => {
+  const categories = (await api<Category[]>("/categories")) ?? [];
+  return (
+    <div className="relative flex flex-wrap items-center justify-center gap-10">
+      {categories.map(({ id, name, slug, image }) => (
+        <Link href={"/categorias/" + slug} key={id}>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-center">{name}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Image
+                src={image}
+                alt={name}
+                width={370}
+                height={180}
+                className="max-h-[180px] rounded-md object-cover transition hover:scale-110 hover:opacity-80"
+              />
+            </CardContent>
+          </Card>
+        </Link>
+      ))}
+    </div>
+  );
+};

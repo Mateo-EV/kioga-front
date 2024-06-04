@@ -51,6 +51,7 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
               "object-cover transition hover:scale-110",
               product.stock === 0 && "grayscale",
             )}
+            sizes="280px"
             fill
           />
         </CardContent>
@@ -69,19 +70,7 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
         <Button
           variant="outline"
           disabled={product.stock === 0}
-          // onClick={() =>
-          //   addProduct({
-          //     id: 0,
-          //     name,
-          //     category,
-          //     brand,
-          //     imageSrc,
-          //     price,
-          //     discount,
-          //     slug,
-          //     quantity: 1,
-          //   })
-          // }
+          onClick={() => addProduct({ ...product, quantity: 1 })}
         >
           <span className="sr-only">Agregar al carro</span>
           <ShoppingCartIcon className="size-5" aria-hidden="true" />

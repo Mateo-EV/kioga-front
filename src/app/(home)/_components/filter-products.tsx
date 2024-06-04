@@ -110,11 +110,12 @@ type FilterProductsProps = {
   | {
       type?: "global";
       categories: Category[];
+      category?: undefined;
     }
   | {
       type: "categories";
-      categoryName: string;
-      categories: undefined;
+      category: Category;
+      categories?: undefined;
     }
 );
 
@@ -123,7 +124,7 @@ export const FilterProducts = ({
   type = "global",
   categories = [],
   brands = [],
-  ...extraData
+  category,
 }: FilterProductsProps) => {
   const isMobile = useMediaQuery("(max-width: 991px)");
   const searchParams = useSearchParams();
@@ -302,9 +303,7 @@ export const FilterProducts = ({
 
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
-                      <BreadcrumbPage>
-                        {(extraData as { categoryName: string }).categoryName}
-                      </BreadcrumbPage>
+                      <BreadcrumbPage>{category!.name}</BreadcrumbPage>
                     </BreadcrumbItem>
                   </>
                 )}
