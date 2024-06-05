@@ -3,13 +3,12 @@ import { H1, H2, Paragraph } from "@/components/typography";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { aboutUsData, top3Categories } from "@/config/const";
+import { aboutUsData } from "@/config/const";
 import { cn } from "@/lib/utils";
 import { ComputerIcon, Layers2Icon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import GradientDecorator from "../gradient-decorator";
-import { TopCategoriesTab } from "./top-categories-tab";
 
 export const StartSection = () => {
   return (
