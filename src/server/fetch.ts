@@ -26,8 +26,8 @@ export async function api<T>(url: string, init?: fetchParams[1]) {
 export async function apiWithStatus<T>(url: string, init?: fetchParams[1]) {
   const headers = new Headers(headers_from_next());
   headers.set("Accept", "application/json");
-  headers.set("Origin", "http://localhost:3000");
-  headers.set("Referer", "http://localhost:3000/");
+  headers.set("Origin", env.NEXT_PUBLIC_APP_URL);
+  headers.set("Cookie", headers_from_next().get("cookie") ?? "");
 
   const request = await fetch(env.NEXT_PUBLIC_BACKEND_URL + "/api" + url, {
     ...init,
