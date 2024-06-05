@@ -1,14 +1,14 @@
 import { BrandsCarousel } from "./_components/carousel/brands-carousel";
 import {
   AboutUsSection,
-  CategoriesSection,
   StartSection,
   SubscriptionNewsLetterSection,
-  WeekProductsSection,
 } from "./_components/sections/home-sections";
 import HeadPhone1Image from "@/assets/img/headphone1.png";
 import HeadPhone2Image from "@/assets/img/headphone2.png";
 import Image from "next/image";
+import WeekProductsSection from "./_components/sections/week-products-section";
+import CategoriesSection from "./_components/sections/categories-section";
 
 export default function HomePage() {
   return (

@@ -10,6 +10,8 @@ import GradientDecorator from "../../_components/gradient-decorator";
 import AddCart from "../../_components/cart/add-cart";
 import { api } from "@/server/fetch";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Params = {
   params: { slug: string };
@@ -72,11 +74,46 @@ export default async function ProductsSlugPage({ params: { slug } }: Params) {
           </Card>
         </div>
       </section>
-      <section className="container relative space-y-4 overflow-hidden py-6">
-        <GradientDecorator />
-        <H2>Productos Similares</H2>
-        <ProductsCarousel products={products} />
-      </section>
+      <Suspense fallback={<SimilarProductsSkeleton />}>
+        <SimilarProducts productSlug={slug} />
+      </Suspense>
     </>
   );
 }
+
+const SimilarProductsSkeleton = () => {
+  return (
+    <div className="container relative flex h-96 w-full gap-4 py-6">
+      <GradientDecorator />
+      <Skeleton className="h-full" containerClassName="size-full" />
+      <Skeleton
+        className="h-full"
+        containerClassName="size-full hidden md:block"
+      />
+      <Skeleton
+        className="h-full"
+        containerClassName="size-full hidden md:block"
+      />
+      <Skeleton
+        className="h-full"
+        containerClassName="size-full hidden xl:block"
+      />
+    </div>
+  );
+};
+
+const SimilarProducts = async ({ productSlug }: { productSlug: string }) => {
+  const products = await api<
+    (Product & { brand: Brand; category: Category })[]
+  >("/products/" + productSlug + "/similar");
+
+  if (!products) return null;
+
+  return (
+    <section className="container relative space-y-4 py-6">
+      <GradientDecorator />
+      <H2>Productos Similares</H2>
+      <ProductsCarousel products={products} />
+    </section>
+  );
+};

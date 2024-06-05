@@ -15,16 +15,13 @@ import {
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { startTransition } from "react";
 
 type CredentialsFormProps = {
   isLoginPage?: boolean;
-  isModal?: boolean;
 };
 
-function CredentialsForm({
-  isLoginPage = false,
-  isModal = false,
-}: CredentialsFormProps) {
+function CredentialsForm({ isLoginPage = false }: CredentialsFormProps) {
   const form = useForm<loginUserSchemaType | registerUserSchemaType>({
     schema: isLoginPage ? loginUserSchema : registerUserSchema,
     defaultValues: {
@@ -37,37 +34,33 @@ function CredentialsForm({
   });
   const router = useRouter();
 
-  const onSubmit = (values: loginUserSchemaType | registerUserSchemaType) => {
-    if (isLoginPage) {
-      axios
-        .post("/login", values)
-        .then(() => {
-          router.push("/dashboard");
-        })
-        .catch((error: AxiosError) => {
-          if (error.response?.status !== 422) throw error;
-
-          for (const key in error.response.data.errors) {
-            form.setError(key as never, {
-              type: "custom",
-              message: error.response.data.errors[key]![0],
-            });
-          }
+  const onSubmit = async (
+    values: loginUserSchemaType | registerUserSchemaType,
+  ) => {
+    try {
+      if (isLoginPage) {
+        await axios.post("/login", values);
+        startTransition(() => {
+          router.push("/");
+          router.refresh();
         });
-    } else {
-      axios
-        .post("/register", values)
-        .then((res) => res.data as object)
-        .catch((error: AxiosError) => {
-          if (error.response?.status !== 422) throw error;
-
-          for (const key in error.response.data.errors) {
-            form.setError(key as never, {
-              type: "custom",
-              message: error.response.data.errors[key]![0],
-            });
-          }
+      } else {
+        await axios.post("/register", values);
+        startTransition(() => {
+          router.push("/");
+          router.refresh();
         });
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      if (err.response?.status !== 422) throw err;
+
+      for (const key in err.response.data.errors) {
+        form.setError(key as never, {
+          type: "custom",
+          message: err.response.data.errors[key]![0],
+        });
+      }
     }
   };
 
@@ -128,7 +121,6 @@ function CredentialsForm({
             "h-auto justify-end p-0",
           )}
           href="/reset-password"
-          replace={isModal}
         >
           ¿Olvidaste tu contraseña?
         </Link>

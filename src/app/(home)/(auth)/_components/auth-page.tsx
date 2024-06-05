@@ -5,10 +5,9 @@ import CredentialsForm from "./credentials-form";
 
 type AuthPageProps = {
   isLoginPage?: boolean;
-  isModal?: boolean;
 };
 
-function AuthPage({ isLoginPage = false, isModal = false }: AuthPageProps) {
+function AuthPage({ isLoginPage = false }: AuthPageProps) {
   return (
     <div className="mx-auto flex w-full flex-col justify-center gap-6 py-4">
       <H2 className="xs:text-center">
@@ -18,7 +17,6 @@ function AuthPage({ isLoginPage = false, isModal = false }: AuthPageProps) {
       <p className="px-8 text-center text-sm text-muted-foreground">
         <Link
           href={isLoginPage ? "/register" : "/login"}
-          replace={isModal}
           className={buttonVariants({
             variant: "link",
             size: "sm",

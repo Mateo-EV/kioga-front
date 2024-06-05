@@ -1,33 +1,32 @@
 "use client";
 
 import { Button, buttonVariants } from "@/components/ui/button";
-import { type top3Categories } from "@/config/const";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import { ProductsCarousel } from "../carousel/products-carousel";
 
 type TopCategoriesTabProps = {
-  categories: typeof top3Categories;
+  categories: (Category & {
+    products: (Product & { category: Category; brand: Brand })[];
+  })[];
 };
 
 export const TopCategoriesTab = ({ categories }: TopCategoriesTabProps) => {
-  const [categorySelected, setCategorySelected] = useState(categories[0]!.name);
-
-  const products = categories.find(
-    ({ name }) => name === categorySelected,
-  )!.products;
+  const [categorySelected, setCategorySelected] = useState(categories[0]!);
 
   return (
     <>
       <div className="grid auto-rows-fr grid-cols-1 items-center gap-4 text-center md:grid-cols-2 lg:grid-cols-4">
-        {categories.map(({ name }) => (
+        {categories.map((category) => (
           <Button
-            key={name}
-            variant={name === categorySelected ? "default" : "outline"}
-            onClick={() => setCategorySelected(name)}
+            key={category.id}
+            variant={
+              category.id === categorySelected.id ? "default" : "outline"
+            }
+            onClick={() => setCategorySelected(category)}
           >
-            {name}
+            {category.name}
           </Button>
         ))}
         <Link
@@ -44,9 +43,9 @@ export const TopCategoriesTab = ({ categories }: TopCategoriesTabProps) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 0 }}
           transition={{ duration: 0.15 }}
-          key={"@" + categorySelected}
+          key={"@" + categorySelected.id}
         >
-          <ProductsCarousel products={products} />
+          <ProductsCarousel products={categorySelected.products} />
         </motion.div>
       </AnimatePresence>
     </>

@@ -11,18 +11,18 @@ export const navItemsContent = [
     content: "Componentes",
     extra: [
       {
-        title: "Case · Gabinetes",
+        title: "Cases · Gabinetes",
         links: [
           {
-            href: "/categorias/gabinetes?tipo=con-fuente",
+            href: "/categorias/cases?tipo=con-fuente",
             text: "Con fuente",
           },
           {
-            href: "/categorias/gabinetes?tipo=sin-fuente",
+            href: "/categorias/cases?tipo=sin-fuente",
             text: "Sin fuente",
           },
           {
-            href: "/categorias/gabinetes?tipo=accesorios",
+            href: "/categorias/cases?tipo=accesorios",
             text: "Accesorios",
           },
         ],
@@ -57,11 +57,11 @@ export const navItemsContent = [
         title: "Memoria Ram",
         links: [
           {
-            href: "/categorias/memoria-ram?tipo=escritorio",
+            href: "/categorias/memoria-ram?tipo=ram-dimm-escritorio",
             text: "Escritorio",
           },
           {
-            href: "/categorias/memoria-ram?tipo=laptops",
+            href: "/categorias/memoria-ram?tipo=ram-sodimm-laptops",
             text: "Laptops",
           },
         ],
@@ -74,7 +74,7 @@ export const navItemsContent = [
             text: "SDD SATA",
           },
           {
-            href: "/categorias/almacenamiento?tipo=ssd-nvme",
+            href: "/categorias/almacenamiento?tipo=sdd-m2-nvme",
             text: "SSD NVME",
           },
           {
@@ -100,11 +100,11 @@ export const navItemsContent = [
         title: "Refrigeración · Enfriamiento",
         links: [
           {
-            href: "/categorias/enfriamiento?tipo=liquido",
+            href: "/categorias/refrigeracion?tipo=liquido",
             text: "Líquido",
           },
           {
-            href: "/categorias/enfriamiento?tipo=aire",
+            href: "/categorias/refrigeracion?tipo=aire",
             text: "Aire",
           },
         ],
@@ -153,7 +153,7 @@ export const navItemsContent = [
         text: "Microfonos",
       },
       {
-        href: "/categorias/perifericos?tipo=mandos",
+        href: "/categorias/perifericos?tipo=mandos-joysticks",
         text: "Mandos",
       },
       {
@@ -161,12 +161,12 @@ export const navItemsContent = [
         text: "Webcams",
       },
       {
-        href: "/categorias/perifericos?tipo=packs",
+        href: "/categorias/perifericos?tipo=combos-packs",
         text: "Packs",
       },
       {
-        href: "/categorias/perifericos?tipo=accesorios-para-teclado",
-        text: "Accesorios para teclado",
+        href: "/categorias/perifericos?tipo=accesorios-de-teclado",
+        text: "Accesorios de teclado",
       },
     ],
   },
@@ -188,344 +188,6 @@ export const navItemsContent = [
       {
         href: "/categorias/laptops",
         text: "Laptops",
-      },
-    ],
-  },
-];
-
-export const products = [
-  {
-    id: 0,
-    name: "Procesador AMD Ryzen 7 4500",
-    slug: "procesador-amd-ryzen-7-4600g",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: null,
-    brand: "Rysen",
-  },
-  {
-    id: 1,
-    name: "Procesador AMD Ryzen 7 4500",
-    slug: "procesador-amd-ryzen-7-4600g",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-    brand: "Rysen",
-  },
-  {
-    id: 2,
-    name: "Procesador AMD Ryzen 7 4500",
-
-    slug: "procesador-amd-ryzen-7-4600g",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-    brand: "Rysen",
-  },
-  {
-    id: 3,
-    name: "Procesador AMD Ryzen 7 4500",
-
-    slug: "procesador-amd-ryzen-7-4600g",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-    brand: "Rysen",
-  },
-  {
-    id: 4,
-    name: "Procesador AMD Ryzen 7 4500",
-
-    slug: "procesador-amd-ryzen-7-4600g",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-    brand: "Rysen",
-  },
-  {
-    id: 5,
-    name: "Procesador AMD Ryzen 7 4500",
-
-    slug: "procesador-amd-ryzen-7-4600g",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-    brand: "Rysen",
-  },
-  {
-    id: 6,
-    name: "Procesador AMD Ryzen 7 4500",
-
-    slug: "procesador-amd-ryzen-7-4600g",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-    brand: "Rysen",
-  },
-  {
-    id: 7,
-    name: "Procesador AMD Ryzen 7 4500",
-
-    slug: "procesador-amd-ryzen-7-4600g",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-    brand: "Rysen",
-  },
-  {
-    id: 8,
-    name: "Procesador AMD Ryzen 7 4500",
-
-    slug: "procesador-amd-ryzen-7-4600g",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-    brand: "Rysen",
-  },
-  {
-    id: 9,
-    name: "Procesador AMD Ryzen 7 4500",
-
-    slug: "procesador-amd-ryzen-7-4600g",
-    category: "Procesadores",
-    imageSrc: ProductoImage,
-    price: 550,
-    discount: 0.24,
-    brand: "Rysen",
-  },
-];
-
-export const categories = [
-  {
-    text: "Cases · Gabinetes",
-    value: "gabinetes",
-  },
-  {
-    text: "Placas · Motherboards",
-    value: "placas",
-  },
-  {
-    text: "Procesadores",
-    value: "procesadores",
-  },
-  {
-    text: "Memoria Ram",
-    value: "memoria-ram",
-  },
-  {
-    text: "Almacenamiento",
-    value: "almacenamiento",
-  },
-  {
-    text: "Tarjetas de Video",
-    value: "tarjeta-de-video",
-  },
-  {
-    text: "Refrigeración · Enfriamiento",
-    value: "refrigeracion",
-  },
-  {
-    text: "Fuentes",
-    value: "fuentes",
-  },
-  {
-    text: "Pasta Térmica",
-    value: "pasta-termica",
-  },
-  { text: "Periféricos", value: "perifericos" },
-  {
-    text: "Monitores",
-    value: "monitores",
-  },
-  {
-    text: "Escritorios",
-    value: "escritorios",
-  },
-  {
-    text: "Estabilizadores",
-    value: "estabilizadores",
-  },
-  {
-    text: "Laptops",
-    value: "laptops",
-  },
-];
-
-export const top3Categories = [
-  {
-    name: "Procesadores",
-    products: [
-      {
-        id: 1,
-        name: "Procesador AMD Ryzen 7 4500",
-
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: null,
-        brand: "Rysen",
-      },
-      {
-        id: 2,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
-      },
-      {
-        id: 3,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
-      },
-      {
-        id: 4,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
-      },
-      {
-        id: 5,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
-      },
-    ],
-  },
-  {
-    name: "Periféricos",
-    products: [
-      {
-        id: 6,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: null,
-        brand: "Rysen",
-      },
-      {
-        id: 7,
-        name: "Procesador AMD Ryzen 7 4500",
-
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
-      },
-      {
-        id: 8,
-        name: "Procesador AMD Ryzen 7 4500",
-
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
-      },
-      {
-        id: 9,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
-      },
-      {
-        id: 10,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
-      },
-    ],
-  },
-  {
-    name: "Monitores",
-    products: [
-      {
-        id: 11,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: null,
-        brand: "Rysen",
-      },
-      {
-        id: 12,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
-      },
-      {
-        id: 13,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
-      },
-      {
-        id: 14,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
-      },
-      {
-        id: 15,
-        name: "Procesador AMD Ryzen 7 4500",
-        slug: "procesador-amd-ryzen-7-4600g",
-        category: "Procesadores",
-        imageSrc: ProductoImage,
-        price: 550,
-        discount: 0.24,
-        brand: "Rysen",
       },
     ],
   },

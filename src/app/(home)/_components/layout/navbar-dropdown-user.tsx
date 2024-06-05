@@ -1,32 +1,55 @@
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+"use client";
 
-function NavbarUserDropdown() {
+import { Avatar } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import axios from "@/lib/axios";
+import { LogOutIcon, ShoppingBasketIcon, UserIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+
+function NavbarUserDropdown({ user }: { user: Session }) {
+  const [isLogginOut, startLogginOut] = useTransition();
+  const router = useRouter();
+
+  const handleLogOut = (e: React.MouseEvent) => {
+    e.preventDefault();
+    startLogginOut(async () => {
+      await axios.post("/logout");
+      router.refresh();
+    });
+  };
+
   return (
-    // <DropdownMenu>
-    //   <DropdownMenuTrigger asChild>
-    //     <Button variant="ghost" size="icon">
-    //       <UserIcon className="size-5" />
-    //     </Button>
-    //   </DropdownMenuTrigger>
-    //   <DropdownMenuContent align="end">
-    //     <DropdownMenuItem className="gap-2">
-    //       <LogInIcon className="size-4" />
-    //       <span>Iniciar Sesión</span>
-    //     </DropdownMenuItem>
-    //     <DropdownMenuItem className="gap-2">
-    //       <UserRoundPlusIcon className="size-4" />
-    //       <span>Registrarse</span>
-    //     </DropdownMenuItem>
-    //   </DropdownMenuContent>
-    // </DropdownMenu>
-    <Link
-      className={cn(buttonVariants({ size: "sm", className: "mr-1" }))}
-      href="/login"
-    >
-      Unirse
-    </Link>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Avatar name={user.name} className="cursor-pointer" />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" sideOffset={10}>
+        <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className="gap-2">
+          <UserIcon className="size-4" />
+          <span>Perfil</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="gap-2">
+          <ShoppingBasketIcon className="size-4" />
+          <span>Pedidos</span>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className="gap-2" onClick={handleLogOut}>
+          {isLogginOut ? <LoadingSpinner /> : <LogOutIcon className="size-4" />}
+          <span>Cerrar Sesión</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 

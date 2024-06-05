@@ -1,14 +1,14 @@
 import "server-only";
-import { api } from "./fetch";
+import { api, apiWithStatus } from "./fetch";
 
 export const getSession = () => {
-  return api<User>("/user", {
-    cache: "no-store",
-  });
+  return api<Session>("/user");
+};
+
+export const getSessionWithErrorCode = () => {
+  return apiWithStatus<Session>("/user");
 };
 
 export const getAdminSession = () => {
-  return api<User>("/admin", {
-    cache: "no-store",
-  });
+  return api<Omit<Session, "email_verified_at">>("/admin");
 };

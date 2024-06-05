@@ -8,10 +8,10 @@ import {
 } from "@/components/ui/carousel";
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { type products } from "@/config/const";
+import { ProductCard } from "../products/product-card";
 
 type ProductsFullScreenCarouselProps = {
-  products: typeof products;
+  products: (Product & { category: Category; brand: Brand })[];
 };
 
 const ProductsFullScreenCarousel = ({
@@ -37,18 +37,18 @@ const ProductsFullScreenCarousel = ({
         setApi={setcarouselApi}
       >
         <CarouselContent className="my-4 px-4 py-2 xs:px-0">
-          {products.map((product) => (
+          {products.map((product, i) => (
             <CarouselItem
               key={product.id}
               className="xs:basis-1/2 carouselMd:basis-1/4 xl:basis-1/6"
             >
-              {/* <ProductCard
+              <ProductCard
                 className={
                   "transition duration-500" +
                   (selectedItem === i ? " xs:scale-105 xs:bg-card/40" : "")
                 }
                 product={product}
-              /> */}
+              />
             </CarouselItem>
           ))}
         </CarouselContent>

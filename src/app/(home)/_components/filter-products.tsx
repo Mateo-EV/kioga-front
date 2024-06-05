@@ -7,16 +7,29 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import {
   Sheet,
   SheetContent,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { MoveDownIcon, MoveUpIcon, SlidersHorizontalIcon } from "lucide-react";
-import { Label } from "@/components/ui/label";
 import { MultipleRangeSlider } from "@/components/ui/slider";
+import {
+  ArrowDownNarrowWideIcon,
+  ArrowUpNarrowWideIcon,
+  SlidersHorizontalIcon,
+} from "lucide-react";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Select,
   SelectContent,
@@ -28,15 +41,6 @@ import { formatPrice } from "@/lib/utils";
 import { useMediaQuery } from "@mantine/hooks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useMemo, useRef, useState } from "react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 const AVAILIBILITY_FILTER = {
   id: "disponibilidad",
@@ -66,6 +70,11 @@ const CATEGORY_FILTERS = {
   name: "Categorías",
 } as const;
 
+const SUBCATEGORY_FILTERS = {
+  id: "tipo",
+  name: "Tipos",
+} as const;
+
 const BRAND_FILTERS = {
   id: "marca",
   name: "Marcas",
@@ -76,6 +85,7 @@ const FILTERS_IDS = [
   PRICE_FILTER.id,
   CATEGORY_FILTERS.id,
   BRAND_FILTERS.id,
+  SUBCATEGORY_FILTERS.id,
 ] as const;
 
 const SORT_OPTIONS = [
@@ -93,12 +103,12 @@ const SORT_OPTIONS = [
   },
   {
     label: "Precio",
-    icon: MoveDownIcon,
+    icon: ArrowDownNarrowWideIcon,
     value: "price",
   },
   {
     label: "Precio",
-    icon: MoveUpIcon,
+    icon: ArrowUpNarrowWideIcon,
     value: "price-asc",
   },
 ];
@@ -110,11 +120,13 @@ type FilterProductsProps = {
   | {
       type?: "global";
       categories: Category[];
+      subcategories?: undefined;
       category?: undefined;
     }
   | {
       type: "categories";
       category: Category;
+      subcategories: Subcategory[];
       categories?: undefined;
     }
 );
@@ -124,6 +136,7 @@ export const FilterProducts = ({
   type = "global",
   categories = [],
   brands = [],
+  subcategories = [],
   category,
 }: FilterProductsProps) => {
   const isMobile = useMediaQuery("(max-width: 991px)");
@@ -146,6 +159,8 @@ export const FilterProducts = ({
   );
 
   const filterContent = useMemo(() => {
+    const isCategoryPage = type === "categories";
+
     return (
       <Accordion
         type="multiple"
@@ -190,8 +205,39 @@ export const FilterProducts = ({
           </AccordionContent>
         </AccordionItem>
 
-        {/* Categories Filters */}
-        {type !== "categories" && (
+        {/* Categories + Subcategories Filters */}
+        {isCategoryPage ? (
+          subcategories.length > 0 && (
+            <AccordionItem value={SUBCATEGORY_FILTERS.id}>
+              <AccordionTrigger>{SUBCATEGORY_FILTERS.name}</AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-2">
+                  {subcategories.map(({ id, name, slug }) => (
+                    <Label key={id} className="flex items-center gap-2">
+                      <Checkbox
+                        id={slug}
+                        checked={searchParams
+                          .getAll(SUBCATEGORY_FILTERS.id)
+                          ?.includes(slug)}
+                        onCheckedChange={(v) => {
+                          applyFilters(
+                            SUBCATEGORY_FILTERS.id,
+                            slug,
+                            v ? "append" : "delete",
+                          );
+                        }}
+                        aria-label={name}
+                      />
+                      <span className="overflow-hidden text-ellipsis whitespace-nowrap text-muted-foreground">
+                        {name}
+                      </span>
+                    </Label>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          )
+        ) : (
           <AccordionItem value={CATEGORY_FILTERS.id}>
             <AccordionTrigger>{CATEGORY_FILTERS.name}</AccordionTrigger>
             <AccordionContent>
@@ -223,34 +269,36 @@ export const FilterProducts = ({
         )}
 
         {/* Brands Filters */}
-        <AccordionItem value={BRAND_FILTERS.id}>
-          <AccordionTrigger>{BRAND_FILTERS.name}</AccordionTrigger>
-          <AccordionContent>
-            <div className="space-y-2">
-              {brands.map(({ id, name, slug }) => (
-                <Label key={id} className="flex items-center gap-2">
-                  <Checkbox
-                    id={slug}
-                    checked={searchParams
-                      .getAll(BRAND_FILTERS.id)
-                      ?.includes(slug)}
-                    onCheckedChange={(v) => {
-                      applyFilters(
-                        BRAND_FILTERS.id,
-                        slug,
-                        v ? "append" : "delete",
-                      );
-                    }}
-                    aria-label={name}
-                  />
-                  <span className="overflow-hidden text-ellipsis whitespace-nowrap text-muted-foreground">
-                    {name}
-                  </span>
-                </Label>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
+        {brands.length > 0 && (
+          <AccordionItem value={BRAND_FILTERS.id}>
+            <AccordionTrigger>{BRAND_FILTERS.name}</AccordionTrigger>
+            <AccordionContent>
+              <div className="space-y-2">
+                {brands.map(({ id, name, slug }) => (
+                  <Label key={id} className="flex items-center gap-2">
+                    <Checkbox
+                      id={slug}
+                      checked={searchParams
+                        .getAll(BRAND_FILTERS.id)
+                        ?.includes(slug)}
+                      onCheckedChange={(v) => {
+                        applyFilters(
+                          BRAND_FILTERS.id,
+                          slug,
+                          v ? "append" : "delete",
+                        );
+                      }}
+                      aria-label={name}
+                    />
+                    <span className="overflow-hidden text-ellipsis whitespace-nowrap text-muted-foreground">
+                      {name}
+                    </span>
+                  </Label>
+                ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        )}
       </Accordion>
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps

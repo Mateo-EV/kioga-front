@@ -1,4 +1,4 @@
-type User = {
+type Session = {
   id: number;
   name: string;
   email: string;
@@ -30,10 +30,17 @@ type Category = {
   image: string;
 };
 
+type Subcategory = {
+  id: number;
+  name: string;
+  slug: string;
+};
+
 type Brand = {
   id: number;
   name: string;
   slug: string;
+  image: string;
 };
 
 // Cursor Pagination

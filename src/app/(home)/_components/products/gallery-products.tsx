@@ -57,6 +57,13 @@ const GalleryProducts = ({ url }: GalleryProductsProps) => {
           params.delete("marca");
         }
 
+        if (params.get("tipo")) {
+          params
+            .getAll("tipo")
+            .forEach((value) => params.append("subcategory[]", value));
+          params.delete("tipo");
+        }
+
         const request = await axios.get<
           CursorPagination<Product & { category: Category; brand: Brand }>
         >(`${url}?${params.toString()}`);

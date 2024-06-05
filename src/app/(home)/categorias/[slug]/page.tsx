@@ -1,10 +1,7 @@
-import { ProductCard } from "@/app/(home)/_components/products/product-card";
 import { FilterProducts } from "@/app/(home)/_components/filter-products";
 import { H1 } from "@/components/typography";
-import { products } from "@/config/const";
-import { type Metadata, type ResolvingMetadata } from "next";
-import { Suspense } from "react";
 import { api } from "@/server/fetch";
+import { type Metadata, type ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import GalleryProducts from "../../_components/products/gallery-products";
 
@@ -31,9 +28,9 @@ export default async function GalleryCategoriesPage({
 }: {
   params: { slug: string };
 }) {
-  const category = await api<Category & { brands: Brand[] }>(
-    "/categories/" + slug,
-  );
+  const category = await api<
+    Category & { brands: Brand[]; subcategories: Subcategory[] }
+  >("/categories/" + slug);
 
   if (!category) notFound();
 
@@ -43,6 +40,7 @@ export default async function GalleryCategoriesPage({
       <FilterProducts
         type="categories"
         brands={category.brands}
+        subcategories={category.subcategories}
         category={category}
       >
         <GalleryProducts url={"api/products/category/" + slug} />

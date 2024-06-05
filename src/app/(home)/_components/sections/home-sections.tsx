@@ -3,14 +3,13 @@ import { H1, H2, Paragraph } from "@/components/typography";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { aboutUsData, products, top3Categories } from "@/config/const";
-import { ComputerIcon, EyeIcon, Layers2Icon } from "lucide-react";
-import Image from "next/image";
-import ProductsFullScreenCarousel from "../carousel/products-fullscreen-carousel";
-import { TopCategoriesTab } from "./top-categories-tab";
-import Link from "next/link";
+import { aboutUsData, top3Categories } from "@/config/const";
 import { cn } from "@/lib/utils";
+import { ComputerIcon, Layers2Icon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import GradientDecorator from "../gradient-decorator";
+import { TopCategoriesTab } from "./top-categories-tab";
 
 export const StartSection = () => {
   return (
@@ -45,47 +44,6 @@ export const StartSection = () => {
       >
         Ver Categorías <Layers2Icon className="size-4" />
       </Link>
-    </section>
-  );
-};
-
-export const WeekProductsSection = () => {
-  return (
-    <section
-      className="relative animate-fade-in overflow-hidden py-12 opacity-0 fill-mode-forwards"
-      style={{ animationDelay: "850ms" }}
-    >
-      <GradientDecorator className="left-1/2 size-[250px] -translate-x-1/2 -translate-y-1/2 xs:left-1/3 xs:top-[300px] xs:size-[300px]" />
-      <div className="container xs:space-y-8">
-        <div className="flex flex-col items-center justify-between gap-4 xs:flex-row">
-          <H2>Productos de la Semana</H2>
-          <Link
-            href="/productos"
-            className={cn(
-              buttonVariants({
-                variant: "secondary",
-                className: "gap-2",
-                size: "lg",
-              }),
-            )}
-          >
-            Ver Más <EyeIcon className="size-4" />
-          </Link>
-        </div>
-        <ProductsFullScreenCarousel products={products} />
-      </div>
-    </section>
-  );
-};
-
-export const CategoriesSection = () => {
-  return (
-    <section className="relative overflow-hidden py-12">
-      <GradientDecorator className="left-1/2 size-[250px] -translate-x-1/2 -translate-y-[70%] md:left-2/3 md:top-1/2 md:block xl:size-[300px]" />
-      <div className="container space-y-8">
-        <H2 className="text-center md:text-left">Mejores Categorías</H2>
-        <TopCategoriesTab categories={top3Categories} />
-      </div>
     </section>
   );
 };
