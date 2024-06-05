@@ -1,7 +1,6 @@
 import { H1, H2, Paragraph } from "@/components/typography";
 import { BreadcrumbController } from "@/components/ui/breadcrumb";
 import { Card } from "@/components/ui/card";
-import { products } from "@/config/const";
 import { type Metadata, type ResolvingMetadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
