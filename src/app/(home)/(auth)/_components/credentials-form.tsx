@@ -15,7 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { startTransition } from "react";
+import { useTransition } from "react";
 
 type CredentialsFormProps = {
   isLoginPage?: boolean;
@@ -33,21 +33,30 @@ function CredentialsForm({ isLoginPage = false }: CredentialsFormProps) {
     },
   });
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const onSubmit = async (
     values: loginUserSchemaType | registerUserSchemaType,
   ) => {
     try {
       if (isLoginPage) {
-        await axios.post("/login", values);
+        const { data } = await axios.post<{ message: string }>(
+          "/login",
+          values,
+        );
         startTransition(() => {
-          router.push("/");
+          if (data.message === "email-not-verified") {
+            router.push("/verify-email");
+          } else {
+            router.push("/");
+          }
+
           router.refresh();
         });
       } else {
         await axios.post("/register", values);
         startTransition(() => {
-          router.push("/");
+          router.push("/verify-email");
           router.refresh();
         });
       }
@@ -125,7 +134,7 @@ function CredentialsForm({ isLoginPage = false }: CredentialsFormProps) {
           ¿Olvidaste tu contraseña?
         </Link>
         <ButtonWithLoading
-          isLoading={form.formState.isSubmitting}
+          isLoading={form.formState.isSubmitting || isPending}
           type="submit"
         >
           {isLoginPage ? "Iniciar Sesión" : "Registrarse"}

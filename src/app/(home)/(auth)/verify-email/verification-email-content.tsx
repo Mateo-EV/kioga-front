@@ -1,13 +1,16 @@
 "use client";
 
-import { Button, ButtonWithLoading } from "@/components/ui/button";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { ButtonWithLoading } from "@/components/ui/button";
 import axios from "@/lib/axios";
+import { MailCheckIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 
 export default function VerificationEmailContent() {
   const router = useRouter();
   const [isLogginOut, startLogginOut] = useTransition();
+  const [isResendingEmailVerification, startSendingEmail] = useTransition();
 
   const handleLogOut = () => {
     startLogginOut(async () => {
@@ -18,15 +21,16 @@ export default function VerificationEmailContent() {
 
   const [status, setStatus] = useState<string | null>(null);
 
-  const resendEmailVerification = async () => {
-    await axios
-      .post("/email/verification-notification")
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      .then((response) => setStatus(response.data.status as unknown as string));
+  const resendEmailVerification = () => {
+    startSendingEmail(async () => {
+      await axios
+        .post<{ status: string }>("/email/verification-notification")
+        .then((response) => setStatus(response.data.status));
+    });
   };
 
   return (
-    <div>
+    <div className="space-y-4">
       <p>
         ¡Gracias por registrarte! Antes de comenzar, ¿podrías verificar tu
         dirección de correo electrónico haciendo clic en el enlace que te
@@ -34,17 +38,13 @@ export default function VerificationEmailContent() {
         enviaremos otro.
       </p>
 
-      {status === "verification-link-sent" && (
-        <div className="mb-4 text-sm font-medium text-green-600">
-          Se ha enviado un nuevo enlace de verificación a la dirección de correo
-          electrónico que proporcionaste durante el registro.
-        </div>
-      )}
-
-      <div className="mt-4 flex items-center justify-between">
-        <Button onClick={resendEmailVerification}>
+      <div className="flex items-center justify-between">
+        <ButtonWithLoading
+          isLoading={isResendingEmailVerification}
+          onClick={resendEmailVerification}
+        >
           Reenviar Correo de Verificación
-        </Button>
+        </ButtonWithLoading>
 
         <ButtonWithLoading
           isLoading={isLogginOut}
@@ -54,6 +54,17 @@ export default function VerificationEmailContent() {
           Cerrar sesión
         </ButtonWithLoading>
       </div>
+
+      {status === "verification-link-sent" && (
+        <Alert>
+          <MailCheckIcon className="size-4" />
+          <AlertTitle>Reenviado</AlertTitle>
+          <AlertDescription>
+            Se ha enviado un nuevo enlace de verificación a la dirección de
+            correo electrónico que proporcionaste durante el registro.
+          </AlertDescription>
+        </Alert>
+      )}
     </div>
   );
 }
