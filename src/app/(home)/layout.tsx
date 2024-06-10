@@ -55,13 +55,13 @@ export default function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <QueryProvider type="customer">
       <Navbar />
       <main>
         <GradientDecorator className="-translate-x-1/2 -translate-y-[70%] md:left-1/3 xl:size-[300px]" />
-        <QueryProvider type="customer">{children}</QueryProvider>
+        {children}
       </main>
       <Footer />
-    </>
+    </QueryProvider>
   );
 }

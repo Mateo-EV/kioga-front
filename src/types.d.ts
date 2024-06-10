@@ -43,6 +43,43 @@ type Brand = {
   image: string;
 };
 
+enum OrderStatus {
+  PENDING = "pendiente", // Creado
+  PROCCESING = "en espera", // En espera para ser recogido
+  SENT = "enviado", // Enviado al cliente
+  DELIVERED = "entregado", // Entregado al cliente
+  CANCELLED = "cancelado", // Pedido cancelado por el cliente
+  REFUNDED = "reembolsado", // Reembolsado por el cliente
+}
+
+type Order = {
+  id: number;
+  code: string;
+  name: string;
+  amount: number;
+  user_id: number;
+  payment_method_id: number;
+  status: OrderStatus;
+  address_id: number;
+  notes: string | null;
+} & (
+  | {
+      shipping_amount: 0;
+      is_delivery: false;
+    }
+  | {
+      shipping_amount: number;
+      is_delivery: true;
+    }
+);
+
+type OrderProduct = {
+  order_id: number;
+  product_id: number;
+  quantity: number;
+  unit_amount: number;
+};
+
 // Cursor Pagination
 type CursorPagination<T> = {
   data: T[];

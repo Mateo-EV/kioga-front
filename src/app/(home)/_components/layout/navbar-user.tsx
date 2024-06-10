@@ -1,16 +1,6 @@
-import { Avatar } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { getSession } from "@/server/auth";
-import { LogOutIcon, ShoppingBasketIcon, UserIcon } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
 import NavbarUserDropdown from "./navbar-dropdown-user";

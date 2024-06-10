@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
 import { colors, navItemsContent } from "@/config/const";
-import { ChevronDownIcon, SearchIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import NavbarCart from "./navbar-cart";
 import NavbarMobileItems from "./navbar-mobile-items";
 import NavbarScroll from "./navbar-scroll";
+import NavbarSearch from "./navbar-search";
 import NavbarUser from "./navbar-user";
 
 const Navbar = () => {
@@ -25,14 +25,7 @@ const Navbar = () => {
           </ul>
           <div className="order-3 flex w-full animate-fade-in items-center justify-end opacity-0 delay-500 fill-mode-forwards">
             <NavbarUser />
-            <Button
-              variant="ghost"
-              size="icon"
-              className="hover:bg-transparent"
-            >
-              <span className="sr-only">Buscar Productos</span>
-              <SearchIcon className="size-5" aria-hidden="true" />
-            </Button>
+            <NavbarSearch />
             <NavbarCart />
             <NavbarMobileItems />
           </div>

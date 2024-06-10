@@ -20,7 +20,6 @@ import {
   Trash2Icon,
 } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
 import ManageCartQuantity from "../cart/manage-cart-quantity";
 
 function NavbarCart() {

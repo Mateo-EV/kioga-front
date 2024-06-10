@@ -4,17 +4,20 @@
 //   type NextRequest,
 // } from "next/server";
 
-export async function middleware() {
-  // const requestHeaders = new Headers(req.headers);
-  // const data = await fetch(
-  //   process.env.NEXT_PUBLIC_BACKEND_URL + "/sanctum/csrf-cookie",
-  //   {
-  //     headers: req.headers,
-  //   },
-  // );
-  // const cookies = data.headers.get("set-cookie")!;
-  // requestHeaders.set("set-cookie", cookies);
-  // return NextResponse.next();
+import { NextResponse, type NextRequest } from "next/server";
+
+export async function middleware(req: NextRequest) {
+  const ip = req.ip ?? "127.0.0.1";
+  const headers = req.headers;
+  headers.set("ip", ip);
+  // const { success } = await ratelimit.limit(ip);
+
+  // if (!success)
+  //   return NextResponse.json("Rate limit exceeded", { status: 429 });
+
+  return NextResponse.next({
+    headers: headers,
+  });
 }
 
 export const config = {

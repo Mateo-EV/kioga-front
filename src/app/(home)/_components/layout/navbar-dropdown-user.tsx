@@ -12,6 +12,7 @@ import {
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import axios from "@/lib/axios";
 import { LogOutIcon, ShoppingBasketIcon, UserIcon } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
@@ -39,9 +40,11 @@ function NavbarUserDropdown({ user }: { user: Session }) {
           <UserIcon className="size-4" />
           <span>Perfil</span>
         </DropdownMenuItem>
-        <DropdownMenuItem className="gap-2">
-          <ShoppingBasketIcon className="size-4" />
-          <span>Pedidos</span>
+        <DropdownMenuItem className="gap-2" asChild>
+          <Link href="/pedidos">
+            <ShoppingBasketIcon className="size-4" />
+            <span>Pedidos</span>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="gap-2" onClick={handleLogOut}>
