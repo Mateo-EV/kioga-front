@@ -2,14 +2,21 @@ import { DataTable } from "@/components/datatable/data-table";
 import { getSession } from "@/server/auth";
 import { api } from "@/server/fetch";
 import { redirect } from "next/navigation";
-import { columns } from "./colums";
+import { columns } from "./_components/colums";
+import OrderDetailsModal from "./_components/order-details-modal";
+import { Suspense } from "react";
+
+export type OrderResponse = Order & {
+  details: (OrderProduct & { product: Product })[];
+  address: Address;
+} & TimeStamps;
 
 export default async function OrdersPage() {
   const session = await getSession();
 
   if (!session) redirect("/login");
 
-  const orders = await api<(Order & { details: OrderProduct })[]>("/orders");
+  const orders = await api<OrderResponse[]>("/orders");
 
   if (!orders) redirect("/");
 
@@ -24,8 +31,9 @@ export default async function OrdersPage() {
         </p>
       </div>
       <div className="animate-opacity-in">
-        <DataTable data={orders} columns={columns} model="Pedidos" />
+        <DataTable data={orders} columns={columns} model="pedidos" />
       </div>
+      <OrderDetailsModal />
     </section>
   );
 }

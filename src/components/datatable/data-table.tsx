@@ -12,6 +12,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  type RowData,
 } from "@tanstack/react-table";
 
 import {
@@ -22,6 +23,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
+declare module "@tanstack/react-table" {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface TableMeta<TData extends RowData> {
+    model: string;
+  }
+}
 
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
@@ -54,7 +62,7 @@ export function DataTable<TData, TValue>({
     },
     meta: {
       model,
-    } as object,
+    },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,

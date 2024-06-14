@@ -1,5 +1,3 @@
-import ProductoImage from "@/assets/img/producto1.png";
-
 export const colors = {
   primary: "#ff6600",
   secondary: "#ffffa1",
@@ -215,3 +213,57 @@ export const aboutUsData = [
       "Operamos de manera ética y transparente en todas nuestras acciones",
   },
 ];
+
+export enum OrderStatus {
+  PENDING = "Pendiente", // Creado
+  WAITING = "En Espera", // En espera para ser recogido
+  SENT = "Enviado", // Enviado al cliente
+  DELIVERED = "Entregado", // Entregado al cliente
+  CANCELLED = "Cancelado", // Pedido cancelado por el cliente
+  REFUNDED = "Reembolsado", // Reembolsado por el cliente
+}
+
+export const OrderStatusVariants = {
+  [OrderStatus.PENDING]: "pendient",
+  [OrderStatus.WAITING]: "info",
+  [OrderStatus.SENT]: "default",
+  [OrderStatus.DELIVERED]: "success",
+  [OrderStatus.CANCELLED]: "destructive",
+  [OrderStatus.REFUNDED]: "outline",
+} as const;
+
+export const OrderStatusDataBar = {
+  [OrderStatus.PENDING]: [{ value: 1 }, { value: 9 }],
+  [OrderStatus.WAITING]: [{ value: 8 }, { value: 2 }],
+  [OrderStatus.SENT]: [{ value: 5 }, { value: 5 }],
+  [OrderStatus.DELIVERED]: [{ value: 10 }, { value: 0 }],
+  [OrderStatus.CANCELLED]: [{ value: 10 }, { value: 0 }],
+  [OrderStatus.REFUNDED]: [{ value: 10 }, { value: 0 }],
+} as const;
+
+export const OrderStatusFillColor = {
+  [OrderStatus.PENDING]: "fill-gray-500",
+  [OrderStatus.WAITING]: "fill-blue-500",
+  [OrderStatus.SENT]: "fill-primary",
+  [OrderStatus.DELIVERED]: "fill-green-500",
+  [OrderStatus.CANCELLED]: "fill-destructive",
+  [OrderStatus.REFUNDED]: "fill-muted",
+} as const;
+
+export const OrderStatusStrokeColor = {
+  [OrderStatus.PENDING]: "stroke-gray-500",
+  [OrderStatus.WAITING]: "stroke-blue-500",
+  [OrderStatus.SENT]: "stroke-primary",
+  [OrderStatus.DELIVERED]: "stroke-green-500",
+  [OrderStatus.CANCELLED]: "stroke-destructive",
+  [OrderStatus.REFUNDED]: "stroke-muted",
+} as const;
+
+export const OrderStatusTextColor = {
+  [OrderStatus.PENDING]: "text-gray-500",
+  [OrderStatus.WAITING]: "text-blue-500",
+  [OrderStatus.SENT]: "text-primary",
+  [OrderStatus.DELIVERED]: "text-green-500",
+  [OrderStatus.CANCELLED]: "text-destructive",
+  [OrderStatus.REFUNDED]: "text-muted",
+} as const;

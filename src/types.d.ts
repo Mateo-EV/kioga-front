@@ -44,12 +44,12 @@ type Brand = {
 };
 
 enum OrderStatus {
-  PENDING = "pendiente", // Creado
-  PROCCESING = "en espera", // En espera para ser recogido
-  SENT = "enviado", // Enviado al cliente
-  DELIVERED = "entregado", // Entregado al cliente
-  CANCELLED = "cancelado", // Pedido cancelado por el cliente
-  REFUNDED = "reembolsado", // Reembolsado por el cliente
+  PENDING = "Pendiente", // Creado
+  WAITING = "En Espera", // En espera para ser recogido
+  SENT = "Enviado", // Enviado al cliente
+  DELIVERED = "Entregado", // Entregado al cliente
+  CANCELLED = "Cancelado", // Pedido cancelado por el cliente
+  REFUNDED = "Reembolsado", // Reembolsado por el cliente
 }
 
 type Order = {
@@ -78,6 +78,25 @@ type OrderProduct = {
   product_id: number;
   quantity: number;
   unit_amount: number;
+};
+
+type Address = {
+  user_id: number;
+  first_name: string;
+  last_name: string;
+  dni: string;
+  phone: string;
+  department: string;
+  province: string;
+  district: string;
+  street_address: string;
+  zip_code: string;
+  reference: string;
+};
+
+type TimeStamps = {
+  created_at: string;
+  updated_at: string;
 };
 
 // Cursor Pagination
