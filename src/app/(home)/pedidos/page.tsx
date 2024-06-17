@@ -4,7 +4,6 @@ import { api } from "@/server/fetch";
 import { redirect } from "next/navigation";
 import { columns } from "./_components/colums";
 import OrderDetailsModal from "./_components/order-details-modal";
-import { Suspense } from "react";
 
 export type OrderResponse = Order & {
   details: (OrderProduct & { product: Product })[];

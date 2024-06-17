@@ -3,6 +3,8 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 export type ProductCart = Product & {
+  category: Category;
+  brand: Brand;
   quantity: number;
 };
 

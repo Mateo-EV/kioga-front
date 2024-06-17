@@ -9,30 +9,35 @@ import GradientDecorator from "../../_components/gradient-decorator";
 import AddCart from "../../_components/cart/add-cart";
 import { api } from "@/server/fetch";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, cache } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 type Params = {
   params: { slug: string };
 };
 
+const getProductBySlug = cache((slug: string) => {
+  return api<Product & { category: Category; brand: Brand }>(
+    "/products/" + slug,
+  );
+});
+
 export async function generateMetadata(
   { params: { slug } }: Params,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
+  const product = (await getProductBySlug(slug))!;
   const previousImages = (await parent).openGraph?.images ?? [];
 
   return {
-    title: slug,
+    title: product.name,
     openGraph: {
-      images: ["/producto.jpg", ...previousImages],
+      images: [product.image, ...previousImages],
     },
   };
 }
 export default async function ProductsSlugPage({ params: { slug } }: Params) {
-  const product = await api<Product & { category: Category; brand: Brand }>(
-    "/products/" + slug,
-  );
+  const product = await getProductBySlug(slug);
 
   if (!product) notFound();
 

@@ -6,7 +6,6 @@ import { siteConfig } from "@/config/site";
 import { Poppins } from "next/font/google";
 
 import { Toaster } from "sonner";
-import CSRFToken from "@/components/csrf-token";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -34,7 +33,6 @@ export default function RootLayout({
       <body
         className={`antialiased ${poppins.variable} relative min-w-72 font-main`}
       >
-        <CSRFToken />
         {children}
         <Toaster richColors />
       </body>

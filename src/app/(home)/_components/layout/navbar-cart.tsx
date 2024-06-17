@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import ManageCartQuantity from "../cart/manage-cart-quantity";
+import Link from "next/link";
 
 function NavbarCart() {
   const { products, removeAllProducts } = useCart();
@@ -73,9 +74,14 @@ function NavbarCart() {
             <div className="flex flex-col items-center gap-4">
               <p>Subtotal: {formatPrice(subtotal)}</p>
               <div className="flex w-full gap-4">
-                <Button className="flex-1 gap-2">
-                  Continuar <ShoppingBagIcon className="size-4" />
-                </Button>
+                <SheetClose asChild>
+                  <Link
+                    href="/checkout"
+                    className={buttonVariants({ className: "flex-1 gap-2" })}
+                  >
+                    Continuar <ShoppingBagIcon className="size-4" />
+                  </Link>
+                </SheetClose>
                 <Button
                   className="flex-1 gap-2"
                   variant="secondary"
@@ -100,11 +106,11 @@ function NavbarCart() {
   );
 }
 
-const ProductCart = ({ product }: { product: ProductCartProps }) => {
+export const ProductCart = ({ product }: { product: ProductCartProps }) => {
   const { setQuantityByProductId, removeProduct } = useCart();
 
   return (
-    <Card className="mb-2">
+    <Card className="mb-2 animate-fade-in">
       <div className="flex items-center">
         <Image
           src={product.image}
@@ -114,16 +120,18 @@ const ProductCart = ({ product }: { product: ProductCartProps }) => {
           className="p-1"
         />
         <div className="flex-1 space-y-1 overflow-hidden pt-2 text-sm">
-          <p className="block w-full overflow-hidden text-ellipsis whitespace-nowrap font-semibold ">
+          <p className="block w-full overflow-hidden text-ellipsis whitespace-nowrap font-bold ">
             {product.name}
           </p>
           <p className="text-muted-foreground">Precio Unitario</p>
-          <p className="text-xs">{formatPrice(product.price_discounted)}</p>
-          {product.discount === 0 && (
-            <p className="text-xs text-muted-foreground line-through">
-              {formatPrice(product.price)}
-            </p>
-          )}
+          <p className="text-xs">
+            {formatPrice(product.price_discounted)}
+            {product.discount > 0 && (
+              <span className="ml-2 text-foreground/20 line-through">
+                {formatPrice(product.price)}
+              </span>
+            )}
+          </p>
         </div>
       </div>
       <div className="flex justify-between px-4 pb-4 pt-2">
