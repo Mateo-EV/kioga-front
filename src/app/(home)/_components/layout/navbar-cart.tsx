@@ -2,7 +2,6 @@
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
   SheetClose,
@@ -12,7 +11,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useCart, type ProductCart as ProductCartProps } from "@/hooks/useCart";
-import { formatPrice } from "@/lib/utils";
+import { cn, formatPrice } from "@/lib/utils";
 import {
   ChevronLeftIcon,
   ShoppingBagIcon,
@@ -20,8 +19,9 @@ import {
   Trash2Icon,
 } from "lucide-react";
 import Image from "next/image";
-import ManageCartQuantity from "../cart/manage-cart-quantity";
 import Link from "next/link";
+import ManageCartQuantity from "../cart/manage-cart-quantity";
+import scrollbarStyle from "@/assets/styles/modules/scrollbar.module.css";
 
 function NavbarCart() {
   const { products, removeAllProducts } = useCart();
@@ -65,11 +65,16 @@ function NavbarCart() {
           <>
             <div className="flex-1">
               <p className="mb-2">Productos</p>
-              <ScrollArea className="-mr-3 h-[calc(100vh-14rem)] pr-3">
+              <div
+                className={cn(
+                  "-mr-3 max-h-[calc(100vh-14rem)] overflow-y-auto pr-3",
+                  scrollbarStyle.scrollbar,
+                )}
+              >
                 {products.map((product, i) => (
                   <ProductCart product={product} key={i} />
                 ))}
-              </ScrollArea>
+              </div>
             </div>
             <div className="flex flex-col items-center gap-4">
               <p>Subtotal: {formatPrice(subtotal)}</p>
@@ -110,7 +115,7 @@ export const ProductCart = ({ product }: { product: ProductCartProps }) => {
   const { setQuantityByProductId, removeProduct } = useCart();
 
   return (
-    <Card className="mb-2 animate-fade-in">
+    <Card className="mb-2">
       <div className="flex items-center">
         <Image
           src={product.image}
@@ -119,19 +124,10 @@ export const ProductCart = ({ product }: { product: ProductCartProps }) => {
           height={90}
           className="p-1"
         />
-        <div className="flex-1 space-y-1 overflow-hidden pt-2 text-sm">
-          <p className="block w-full overflow-hidden text-ellipsis whitespace-nowrap font-bold ">
-            {product.name}
-          </p>
+        <div className="space-y-1 overflow-hidden pt-2 text-sm">
+          <p className="block truncate font-bold">{product.name}</p>
           <p className="text-muted-foreground">Precio Unitario</p>
-          <p className="text-xs">
-            {formatPrice(product.price_discounted)}
-            {product.discount > 0 && (
-              <span className="ml-2 text-foreground/20 line-through">
-                {formatPrice(product.price)}
-              </span>
-            )}
-          </p>
+          <p className="text-xs">{formatPrice(product.price_discounted)}</p>
         </div>
       </div>
       <div className="flex justify-between px-4 pb-4 pt-2">

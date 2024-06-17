@@ -34,7 +34,7 @@ export default function RootLayout({
         className={`antialiased ${poppins.variable} relative min-w-72 font-main`}
       >
         {children}
-        <Toaster richColors />
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   );

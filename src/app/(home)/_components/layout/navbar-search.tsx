@@ -16,7 +16,7 @@ import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { memo, useState } from "react";
-import commandStyles from "@/assets/styles/modules/command.module.css";
+import scrollbarStyle from "@/assets/styles/modules/scrollbar.module.css";
 
 type SearchResult = {
   products: Product[];
@@ -115,7 +115,7 @@ const CommandContent = memo(
       );
 
     return (
-      <CommandList className={commandStyles.scrollbar}>
+      <CommandList className={scrollbarStyle.scrollbar}>
         <CommandGroup heading="Productos">
           {data?.products.map((object) => (
             <CommandItem key={object.id} className="gap-2" asChild>

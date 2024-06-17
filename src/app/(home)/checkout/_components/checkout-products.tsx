@@ -1,97 +1,72 @@
 "use client";
 
-import { useCart } from "@/hooks/useCart";
-import { cn, formatPrice } from "@/lib/utils";
-import { ShoppingCartIcon } from "lucide-react";
-import { ProductCart } from "../../_components/layout/navbar-cart";
+import { ProductCart } from "@/app/(home)/_components/layout/navbar-cart";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { useEffect, useState } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
+import { useCart } from "@/hooks/useCart";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useState } from "react";
+
+const SALT_PAGE = 2;
 
 function CheckoutProducts() {
   const { products } = useCart();
-  const [isMounted, setIsMounted] = useState(false);
+  const [page, setPage] = useState(0);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  if (products.length === 0) return;
 
-  if (!isMounted)
-    return (
-      <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
-        <div className="lg:col-span-7">
-          <Skeleton count={3} className="mb-4 h-32" />
-        </div>
-        <div className="h-full lg:col-span-5">
-          <Skeleton className="mb-4 h-full" />
-        </div>
-      </div>
-    );
+  const startIndex = page * SALT_PAGE;
+  const endIndex = startIndex + SALT_PAGE;
+  const paginatedProducts = products.slice(startIndex, endIndex);
 
-  const subtotal = products.reduce((acc, product) => {
-    return acc + product.price_discounted * product.quantity;
-  }, 0);
-
-  const isCartEmpty = products.length === 0;
+  const numberOfPages = Math.ceil(products.length / SALT_PAGE);
+  const isNumberOfPagesMayorThanFour = numberOfPages > 4;
 
   return (
-    <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
-      <div
-        className={cn(
-          "lg:col-span-7",
-          isCartEmpty
-            ? "rounded-lg border-2 border-dashed border-zinc-200 p-12"
-            : "",
-        )}
-      >
-        <h2 className="sr-only">Productos en tu carrito de compras</h2>
-        {isCartEmpty ? (
-          <div className="flex h-full flex-col items-center justify-center gap-1">
-            <div aria-hidden="true" className="mb-4">
-              <ShoppingCartIcon className="size-40" />
+    <div className="mb-4 space-y-2">
+      {paginatedProducts.map((product) => (
+        <ProductCart key={product.id} product={product} />
+      ))}
+      {products.length > SALT_PAGE && (
+        <div className="w-full">
+          <div className="flex flex-row justify-between">
+            <Button
+              className="gap-2"
+              variant="outline"
+              disabled={page === 0}
+              onClick={() => setPage((p) => p - 1)}
+            >
+              <ChevronLeftIcon className="size-4" />
+              <span>Anterior</span>
+            </Button>
+            <div className="flex items-center justify-center space-x-2">
+              {isNumberOfPagesMayorThanFour ? (
+                <span className="text-sm font-medium">
+                  Página {page + 1} de {numberOfPages}
+                </span>
+              ) : (
+                Array.from({ length: numberOfPages }).map((_, i) => (
+                  <Button
+                    key={i}
+                    variant={i === page ? "default" : "outline"}
+                    onClick={() => setPage(i)}
+                  >
+                    {i + 1}
+                  </Button>
+                ))
+              )}
             </div>
-            <h3 className="text-2xl font-semibold">Tu carro está vacío</h3>
-            <p className="text-center text-muted-foreground">
-              Nada que mostrar aquí
-            </p>
-          </div>
-        ) : null}
-
-        <div>
-          {products.map((product) => (
-            <ProductCart key={product.id} product={product} />
-          ))}
-        </div>
-      </div>
-
-      <Card className="mt-16 animate-fade-in px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
-        <h2 className="text-lg font-semibold">Resumen del pedido</h2>
-        <div className="mt-6 space-y-4">
-          <div className="flex items-center justify-between">
-            <p className="text-sm">Subtotal</p>
-            <p className="text-sm font-medium">{formatPrice(subtotal)}</p>
-          </div>
-
-          <div className="flex items-center justify-between border-t-2 pt-4">
-            <p className="text-sm text-muted-foreground">Envío</p>
-            <p className="text-sm text-muted-foreground">{formatPrice(5)}</p>
-          </div>
-
-          <div className="flex items-center justify-between border-t-2 pt-4">
-            <p className="text-base font-semibold">Total</p>
-            <p className="text-base font-semibold">
-              {formatPrice(subtotal + 5)}
-            </p>
+            <Button
+              className="gap-2"
+              variant="outline"
+              disabled={page === numberOfPages - 1}
+              onClick={() => setPage((p) => p + 1)}
+            >
+              <span>Siguiente</span>
+              <ChevronRightIcon className="size-4" />
+            </Button>
           </div>
         </div>
-
-        <div className="mt-6">
-          <Button className="w-full" size="lg">
-            Checkout
-          </Button>
-        </div>
-      </Card>
+      )}
     </div>
   );
 }
