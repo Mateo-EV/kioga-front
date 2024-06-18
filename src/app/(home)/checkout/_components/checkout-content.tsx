@@ -1,6 +1,10 @@
 "use client";
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  Button,
+  ButtonWithLoading,
+  buttonVariants,
+} from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useCart } from "@/hooks/useCart";
@@ -11,9 +15,11 @@ import CheckoutProducts from "./checkout-products";
 import Link from "next/link";
 import CheckoutForm from "./checkout-form";
 
-function CheckoutContent() {
+function CheckoutContent({ addresses }: { addresses: Address[] }) {
   const { products } = useCart();
   const [isMounted, setIsMounted] = useState(false);
+  const [isDelivery, setIsDelivery] = useState(false);
+  const [isMakingOrder, setIsMakingOrder] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -36,7 +42,7 @@ function CheckoutContent() {
   }, 0);
 
   const isCartEmpty = products.length === 0;
-  const shippingPrice = isCartEmpty ? 0 : 5;
+  const shippingPrice = !isCartEmpty && isDelivery ? 5 : 0;
 
   return (
     <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
@@ -62,11 +68,15 @@ function CheckoutContent() {
             </Link>
           </div>
         ) : (
-          <CheckoutForm />
+          <CheckoutForm
+            addresses={addresses}
+            setIsDelivery={setIsDelivery}
+            setIsMakingOrder={setIsMakingOrder}
+          />
         )}
       </div>
 
-      <div className="lg:col-span-5">
+      <div className="top-24 mt-10 lg:sticky lg:col-span-5 lg:mt-0">
         <CheckoutProducts />
         <Card className="animate-fade-in px-4 py-6 sm:p-6 lg:mt-0 lg:p-8">
           <h2 className="text-lg font-semibold">Resumen del pedido</h2>
@@ -96,9 +106,15 @@ function CheckoutContent() {
           </div>
 
           <div className="mt-6">
-            <Button className="w-full" size="lg" disabled={isCartEmpty}>
+            <ButtonWithLoading
+              isLoading={isMakingOrder}
+              className="w-full"
+              size="lg"
+              disabled={isCartEmpty}
+              form="checkout-form"
+            >
               Checkout
-            </Button>
+            </ButtonWithLoading>
           </div>
         </Card>
       </div>

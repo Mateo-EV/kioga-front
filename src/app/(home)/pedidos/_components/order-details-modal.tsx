@@ -23,6 +23,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
 import {
   OrderStatusDataBar,
   OrderStatusFillColor,
@@ -242,7 +243,11 @@ const OrderDetailsModalContent = memo(
                 className="col-span-2"
               />
               {order.address.reference && (
-                <textarea value={order.address.reference} />
+                <Textarea
+                  value={order.address.reference}
+                  disabled
+                  className="col-span-2 resize-none"
+                />
               )}
             </>
           )}

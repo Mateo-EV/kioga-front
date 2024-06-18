@@ -127,7 +127,14 @@ export const ProductCart = ({ product }: { product: ProductCartProps }) => {
         <div className="space-y-1 overflow-hidden pt-2 text-sm">
           <p className="block truncate font-bold">{product.name}</p>
           <p className="text-muted-foreground">Precio Unitario</p>
-          <p className="text-xs">{formatPrice(product.price_discounted)}</p>
+          <p className="text-xs">
+            {formatPrice(product.price_discounted)}
+            {product.discount > 0 && (
+              <span className="ml-2 text-muted-foreground/40 line-through">
+                {formatPrice(product.price)}
+              </span>
+            )}
+          </p>
         </div>
       </div>
       <div className="flex justify-between px-4 pb-4 pt-2">

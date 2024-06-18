@@ -188,11 +188,13 @@ const FormController = <
   render,
   label,
   inputProps = { type: "text" },
+  containerProps,
   ...props
 }: Omit<ControllerProps<TFieldValues, TName>, "render"> & {
   render?: ControllerProps<TFieldValues, TName>["render"];
-  label: string;
+  label?: string;
   inputProps?: React.ComponentPropsWithRef<"input">;
+  containerProps?: React.ComponentPropsWithRef<typeof FormItem>;
 }) => {
   return (
     <FormField
@@ -201,7 +203,7 @@ const FormController = <
         render
           ? render
           : ({ field }) => (
-              <FormItem>
+              <FormItem {...containerProps}>
                 <FormLabel>{label}</FormLabel>
                 <FormControl>
                   <FormInput

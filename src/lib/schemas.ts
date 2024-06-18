@@ -69,30 +69,69 @@ const phoneRegex = new RegExp(
   /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
 );
 
-export const checkoutSchema = z.object({
-  is_delivery: z.boolean(),
-  address_id: z.number().optional(),
-  address: z
-    .object({
-      first_name: z.string().min(1, "El nombre es obligatorio").max(255),
-      last_name: z.string().min(1, "El apeliido es obligatorio").max(255),
-      dni: z
-        .string()
-        .regex(/^\d+$/, "El dni está compuesto de dígitos")
-        .length(8, "El dni debe tener 8 caracteres"),
-      phone: z.string().regex(phoneRegex, "El teléfono no es válido"),
-      department: z.string().max(255).optional(),
-      province: z.string().max(255).optional(),
-      district: z.string().max(255).optional(),
-      street_address: z.string().max(255).optional(),
-      zip_code: z
-        .string()
-        .regex(/^\d+$/, "El código postal está compuesto de dígitos")
-        .max(10, "El código postal tiene 10 caracteres como máximo")
-        .optional(),
-      reference: z.string().max(255).optional(),
-    })
-    .optional(),
-});
+export const checkoutSchema = z
+  .object({
+    is_delivery: z.boolean(),
+    address_id: z.number().optional(),
+    address: z
+      .object({
+        first_name: z.string().min(1, "El nombre es obligatorio").max(255),
+        last_name: z.string().min(1, "El apeliido es obligatorio").max(255),
+        dni: z
+          .string()
+          .min(1, "El dni es obligatorio")
+          .regex(/^\d+$/, "El dni está compuesto de dígitos")
+          .length(8, "El dni debe tener 8 caracteres"),
+        phone: z
+          .string()
+          .min(1, "El teléfono es obligatorio")
+          .regex(phoneRegex, "El teléfono no es válido"),
+        department: z.string().max(255).optional(),
+        province: z.string().max(255).optional(),
+        district: z.string().max(255).optional(),
+        street_address: z.string().max(255).optional(),
+        zip_code: z
+          .string()
+          .max(10, "El código postal tiene 10 caracteres como máximo")
+          .optional()
+          .refine((value) => value === "" || /^\d+$/.test(value!), {
+            message: "El código postal está compuesto de dígitos",
+          }),
+        reference: z.string().max(255).optional(),
+      })
+      .optional(),
+    notes: z.string().max(255).optional(),
+  })
+  .superRefine(({ is_delivery, address }, ctx) => {
+    if (is_delivery) {
+      if (!address?.department)
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["address.department"],
+          message: "El departamento es obligatorio",
+        });
+
+      if (!address?.district)
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["address.district"],
+          message: "El distrito es obligatorio",
+        });
+
+      if (!address?.province)
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["address.province"],
+          message: "La provincia es obligatoria",
+        });
+
+      if (!address?.street_address)
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["address.street_address"],
+          message: "La dirección es obligatoria",
+        });
+    }
+  });
 
 export type checkoutSchemaType = z.infer<typeof checkoutSchema>;
