@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useCart } from "@/hooks/useCart";
 
 type AddCartProps = {
-  product: Product;
+  product: Product & { category: Category; brand: Brand };
 };
 
 function AddCart({ product }: AddCartProps) {

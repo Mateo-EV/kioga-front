@@ -5,11 +5,7 @@ import { redirect } from "next/navigation";
 import { columns } from "./_components/colums";
 import OrderDetailsModal from "./_components/order-details-modal";
 import OrderStatus from "./_components/orders-status";
-
-export type OrderResponse = Order & {
-  details: (OrderProduct & { product: Product })[];
-  address: Address;
-} & TimeStamps;
+import { type OrderResponse } from "@/hooks/useModal";
 
 export default async function OrdersPage() {
   const session = await getSession();

@@ -1,19 +1,15 @@
 "use client";
 
-import {
-  Button,
-  ButtonWithLoading,
-  buttonVariants,
-} from "@/components/ui/button";
+import { ButtonWithLoading, buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useCart } from "@/hooks/useCart";
 import { cn, formatPrice } from "@/lib/utils";
 import { ShoppingCartIcon } from "lucide-react";
-import { useEffect, useState } from "react";
-import CheckoutProducts from "./checkout-products";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import CheckoutForm from "./checkout-form";
+import CheckoutProducts from "./checkout-products";
 
 function CheckoutContent({ addresses }: { addresses: Address[] }) {
   const { products } = useCart();

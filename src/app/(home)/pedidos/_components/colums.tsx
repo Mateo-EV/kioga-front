@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 interface DataTableRowActionsProps {
-  row: Row<Order & { details: OrderProduct[] } & TimeStamps>;
+  row: Row<OrderResponse>;
 }
 
 import { DataTableColumnHeader } from "@/components/datatable/data-table-column-header";
@@ -21,8 +21,7 @@ import { Input } from "@/components/ui/input";
 import { OrderStatusVariants, type OrderStatus } from "@/config/const";
 import { formatToDate, formatToTime } from "@/lib/date";
 import { formatPrice } from "@/lib/utils";
-import { useModal } from "@/hooks/useModal";
-import { type OrderResponse } from "../page";
+import { type OrderResponse, useModal } from "@/hooks/useModal";
 
 export const columns = [
   {

@@ -4,21 +4,29 @@ import { api } from "@/server/fetch";
 import { type Metadata, type ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import GalleryProducts from "../../_components/products/gallery-products";
+import { cache } from "react";
 
 type Params = {
   params: { slug: string };
 };
 
+const getCategoryBySlug = cache((slug: string) =>
+  api<Category & { brands: Brand[]; subcategories: Subcategory[] }>(
+    "/categories/" + slug,
+  ),
+);
+
 export async function generateMetadata(
   { params: { slug } }: Params,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
+  const category = (await getCategoryBySlug(slug))!;
   const previousImages = (await parent).openGraph?.images ?? [];
 
   return {
     title: slug,
     openGraph: {
-      images: ["/categoria.jpg", ...previousImages],
+      images: [category.image, ...previousImages],
     },
   };
 }
@@ -28,9 +36,7 @@ export default async function GalleryCategoriesPage({
 }: {
   params: { slug: string };
 }) {
-  const category = await api<
-    Category & { brands: Brand[]; subcategories: Subcategory[] }
-  >("/categories/" + slug);
+  const category = await getCategoryBySlug(slug);
 
   if (!category) notFound();
 

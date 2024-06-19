@@ -1,8 +1,6 @@
+import GamingSetUpImage from "@/assets/img/gaming-setup.png";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import GamingSetUpImage from "@/assets/img/gaming-setup.png";
-import { getSession } from "@/server/auth";
-import { redirect } from "next/navigation";
 
 type HomeAuthLayoutProps = {
   children: React.ReactNode;

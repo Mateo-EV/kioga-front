@@ -1,5 +1,5 @@
 import { env } from "@/env";
-import { headers, headers as headers_from_next } from "next/headers";
+import { headers as headers_from_next } from "next/headers";
 import "server-only";
 
 type fetchParams = Parameters<typeof fetch>;
@@ -9,8 +9,6 @@ export async function api<T>(url: string, init?: fetchParams[1]) {
   headers.set("Accept", "application/json");
   headers.set("Origin", env.NEXT_PUBLIC_APP_URL);
   headers.set("Cookie", headers_from_next().get("cookie") ?? "");
-  // headers.set("x-forwarded-for", headers_from_next().get("ip") ?? "127.0.0.0");
-  // console.log(getIp());
 
   const request = await fetch(env.NEXT_PUBLIC_BACKEND_URL + "/api" + url, {
     ...init,

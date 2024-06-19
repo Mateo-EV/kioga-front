@@ -1,5 +1,9 @@
-import { type OrderResponse } from "@/app/(home)/pedidos/page";
 import { create } from "zustand";
+
+export type OrderResponse = Order & {
+  details: (OrderProduct & { product: Product })[];
+  address: Address;
+} & TimeStamps;
 
 export type ModalOrderDetails = {
   type: "order-details";

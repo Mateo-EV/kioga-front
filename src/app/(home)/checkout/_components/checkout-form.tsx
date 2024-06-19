@@ -23,7 +23,7 @@ import { XIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { useCart } from "@/hooks/useCart";
-import axios, { AxiosError } from "@/lib/axios";
+import axios, { type AxiosError } from "@/lib/axios";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -142,7 +142,7 @@ function CheckoutForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDelivery]);
 
-  const { products } = useCart();
+  const { products, removeAllProducts } = useCart();
 
   const makeOrder = form.handleSubmit(async (values) => {
     setIsMakingOrder(true);
@@ -153,12 +153,15 @@ function CheckoutForm({
       product_id: product.id,
     }));
 
+    console.log(preOrder);
+
     try {
-      const { data } = await axios.post<{ init_point: string }>(
+      const { data } = await axios.post<MercadoPagoPreference>(
         "/api/orders/store",
         preOrder,
       );
-      window.open(data.init_point, "_blank");
+      window.location.href = data.init_point;
+      removeAllProducts();
     } catch (error) {
       const err = error as AxiosError;
       if (err.response?.status !== 422) {
