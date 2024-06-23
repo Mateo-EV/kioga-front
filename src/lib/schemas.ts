@@ -30,9 +30,26 @@ export const registerUserSchema = z
 
 export type registerUserSchemaType = z.infer<typeof registerUserSchema>;
 
-export const resetPasswordSchema = z.object({
-  email: z.string(),
-});
+export const resetPasswordSchema = z
+  .object({
+    email: z
+      .string()
+      .min(1, "El email es obligatorio")
+      .email("El email no es válido"),
+    password: z
+      .string()
+      .min(8, "La contraseña debe tener al menos 8 caracteres"),
+    password_confirmation: z.string(),
+  })
+  .refine(
+    ({ password_confirmation, password }) => password === password_confirmation,
+    {
+      message: "Las contraseñas deben ser iguales",
+      path: ["password_confirmation"],
+    },
+  );
+
+export type resetPasswordSchemaType = z.infer<typeof resetPasswordSchema>;
 
 export const userProfileSchema = z
   .object({

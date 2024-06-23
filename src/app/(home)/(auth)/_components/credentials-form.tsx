@@ -129,7 +129,7 @@ function CredentialsForm({ isLoginPage = false }: CredentialsFormProps) {
             buttonVariants({ variant: "link", size: "sm" }),
             "h-auto justify-end p-0",
           )}
-          href="/reset-password"
+          href="/forgot-password"
         >
           ¿Olvidaste tu contraseña?
         </Link>
