@@ -81,7 +81,6 @@ const GalleryProducts = ({ url }: GalleryProductsProps) => {
       void fetchNextPage();
     }
   }, [entry?.isIntersecting, fetchNextPage, limitterRequests]);
-  console.log(limitterRequests);
 
   const products = data?.pages.flatMap((response) => response.data);
 

@@ -1,9 +1,6 @@
 "use client";
 
 import {
-  type ColumnDef,
-  type SortingState,
-  type VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -12,7 +9,10 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  type ColumnDef,
   type RowData,
+  type SortingState,
+  type VisibilityState,
 } from "@tanstack/react-table";
 
 import {
@@ -31,15 +31,34 @@ declare module "@tanstack/react-table" {
   }
 }
 
+import { useState } from "react";
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
-import { useState } from "react";
 
-interface DataTableProps<TData, TValue> {
+// type createUrlFromParamsProps = {
+//   pagination: PaginationState;
+// };
+
+// const createUrlFromParams = (
+//   url: string,
+//   { pagination, ...params }: createUrlFromParamsProps,
+// ) => {
+//   const URL_OBJECT = new URL(url);
+//   const paramsFormatted = {
+//     page: (pagination.pageSize + 1).toString(),
+//     limit: pagination.pageSize.toString(),
+//     ...params,
+//   };
+//   const searchParams = new URLSearchParams(paramsFormatted);
+//   URL_OBJECT.search = searchParams.toString();
+//   return URL_OBJECT.toString();
+// };
+
+type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
   model: string;
-}
+  data: TData[];
+};
 
 export function DataTable<TData, TValue>({
   columns,

@@ -10,6 +10,6 @@ export const getSessionWithErrorCode = () => {
   return apiWithStatus<Session>("/user");
 };
 
-export const getAdminSession = () => {
+export const getAdminSession = cache(() => {
   return api<Omit<Session, "email_verified_at">>("/admin");
-};
+});

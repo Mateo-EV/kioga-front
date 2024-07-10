@@ -33,8 +33,11 @@ export default function ForgotPasswordContent() {
     } catch (error) {
       const err = error as AxiosError;
 
-      if (err.response?.status !== 422) throw err;
-      toast.error(err.response.data.message);
+      if (err.response?.status !== 422){
+        toast.error("Ocurrió un error");
+      } else {
+        toast.error(err.response.data.message);
+      };
     }
   });
 

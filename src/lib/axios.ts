@@ -2,6 +2,7 @@
 
 import Axios, { type AxiosError as AxiosErrorLib } from "axios";
 import { env } from "@/env";
+import { toast } from "sonner";
 
 const axios = Axios.create({
   baseURL: env.NEXT_PUBLIC_BACKEND_URL,
@@ -31,3 +32,12 @@ export type AxiosError = AxiosErrorLib<{
 }>;
 
 export default axios;
+
+export const handleErrorWithToast = (error: any) => {
+  const err = error as AxiosError;
+  if (err.response?.status === 422) {
+    toast.error(err.response.data.message);
+  } else {
+    toast.error("Ocurrió un error");
+  }
+};

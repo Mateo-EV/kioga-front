@@ -4,9 +4,10 @@ import { H3 } from "@/components/typography";
 import { ButtonWithLoading } from "@/components/ui/button";
 import { Form, FormController } from "@/components/ui/form";
 import { useForm } from "@/hooks/useForm";
-import axios, { type AxiosError } from "@/lib/axios";
+import axios, { handleErrorWithToast } from "@/lib/axios";
 import { loginUserSchema, type loginUserSchemaType } from "@/lib/schemas";
 import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 const AdminLoginForm = () => {
   const form = useForm<Omit<loginUserSchemaType, "remember">>({
@@ -16,15 +17,15 @@ const AdminLoginForm = () => {
       password: "",
     },
   });
-  const router = useRouter()
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const onSubmit = async (values: Omit<loginUserSchemaType, "remember">) => {
     try {
       await axios.post("/admin/login", values);
-      router.push("/admin/dashboard");
-    } catch (err) {
-      const error = err as AxiosError;
-      console.log(error);
+      startTransition(() => router.push("/admin/dashboard"));
+    } catch (error) {
+      handleErrorWithToast(error);
     }
   };
 
@@ -51,7 +52,7 @@ const AdminLoginForm = () => {
           }}
         />
         <ButtonWithLoading
-          isLoading={form.formState.isSubmitting}
+          isLoading={form.formState.isSubmitting || isPending}
           type="submit"
         >
           Iniciar Sesión

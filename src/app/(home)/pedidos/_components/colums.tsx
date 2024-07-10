@@ -18,10 +18,10 @@ interface DataTableRowActionsProps {
 import { DataTableColumnHeader } from "@/components/datatable/data-table-column-header";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { OrderStatusVariants, type OrderStatus } from "@/config/const";
+import { type OrderStatus, OrderStatusVariants } from "@/config/const";
+import { useModal, type OrderResponse } from "@/hooks/useModal";
 import { formatToDate, formatToTime } from "@/lib/date";
 import { formatPrice } from "@/lib/utils";
-import { type OrderResponse, useModal } from "@/hooks/useModal";
 
 export const columns = [
   {
@@ -110,6 +110,7 @@ export const columns = [
 
 function DataTableRowActions({ row }: DataTableRowActionsProps) {
   const { open } = useModal();
+  const order = row.original;
 
   return (
     <DropdownMenu>
@@ -125,14 +126,14 @@ function DataTableRowActions({ row }: DataTableRowActionsProps) {
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem
           className="gap-2"
-          onClick={() => navigator.clipboard.writeText(row.getValue("code"))}
+          onClick={() => navigator.clipboard.writeText(order.code)}
         >
           <CopyIcon className="size-4" />
           <span>Copiar</span>
         </DropdownMenuItem>
         <DropdownMenuItem
           className="gap-2"
-          onClick={() => open({ type: "order-details", data: row.original })}
+          onClick={() => open({ type: "order-details", data: order })}
         >
           <ReceiptTextIcon className="size-4" />
           <span>Detalles</span>

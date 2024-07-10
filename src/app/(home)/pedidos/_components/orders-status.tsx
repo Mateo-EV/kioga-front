@@ -11,11 +11,10 @@ export default function OrderStatus() {
   useEffect(() => {
     if (searchParams.get("success") === "true") {
       toast.success("Pedido creado exitosamente");
-      router.push("/pedidos");
     } else if (searchParams.get("error") === "true") {
-      toast.success("Ocurrió un error");
-      router.push("/pedidos");
+      toast.error("Ocurrió un error");
     }
+    router.push("/pedidos");
   }, [router, searchParams]);
 
   return null;

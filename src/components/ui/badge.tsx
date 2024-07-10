@@ -13,7 +13,7 @@ const badgeVariants = cva(
         info: "border-transparent bg-blue-500 text-primary-foreground hover:bg-blue-500/80",
         secondary:
           "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        pendient:
+        pending:
           "border-transparent bg-gray-500 text-primary-foreground hover:bg-gray-500/80",
         success:
           "border-transparent bg-green-500 text-primary-foreground hover:bg-green-500/80",

@@ -220,16 +220,14 @@ export enum OrderStatus {
   SENT = "Enviado", // Enviado al cliente
   DELIVERED = "Entregado", // Entregado al cliente
   CANCELLED = "Cancelado", // Pedido cancelado por el cliente
-  REFUNDED = "Reembolsado", // Reembolsado por el cliente
 }
 
 export const OrderStatusVariants = {
-  [OrderStatus.PENDING]: "pendient",
+  [OrderStatus.PENDING]: "pending",
   [OrderStatus.WAITING]: "info",
   [OrderStatus.SENT]: "default",
   [OrderStatus.DELIVERED]: "success",
   [OrderStatus.CANCELLED]: "destructive",
-  [OrderStatus.REFUNDED]: "outline",
 } as const;
 
 export const OrderStatusDataBar = {
@@ -238,7 +236,6 @@ export const OrderStatusDataBar = {
   [OrderStatus.SENT]: [{ value: 5 }, { value: 5 }],
   [OrderStatus.DELIVERED]: [{ value: 10 }, { value: 0 }],
   [OrderStatus.CANCELLED]: [{ value: 10 }, { value: 0 }],
-  [OrderStatus.REFUNDED]: [{ value: 10 }, { value: 0 }],
 } as const;
 
 export const OrderStatusFillColor = {
@@ -247,7 +244,6 @@ export const OrderStatusFillColor = {
   [OrderStatus.SENT]: "fill-primary",
   [OrderStatus.DELIVERED]: "fill-green-500",
   [OrderStatus.CANCELLED]: "fill-destructive",
-  [OrderStatus.REFUNDED]: "fill-muted",
 } as const;
 
 export const OrderStatusStrokeColor = {
@@ -256,7 +252,6 @@ export const OrderStatusStrokeColor = {
   [OrderStatus.SENT]: "stroke-primary",
   [OrderStatus.DELIVERED]: "stroke-green-500",
   [OrderStatus.CANCELLED]: "stroke-destructive",
-  [OrderStatus.REFUNDED]: "stroke-muted",
 } as const;
 
 export const OrderStatusTextColor = {
@@ -265,5 +260,4 @@ export const OrderStatusTextColor = {
   [OrderStatus.SENT]: "text-primary",
   [OrderStatus.DELIVERED]: "text-green-500",
   [OrderStatus.CANCELLED]: "text-destructive",
-  [OrderStatus.REFUNDED]: "text-muted",
 } as const;
